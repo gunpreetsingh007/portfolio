@@ -5,7 +5,7 @@ import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { CSSProperties, MouseEventHandler } from 'react'
+import type { CSSProperties, MouseEventHandler } from 'react'
 import { projects } from '~/utils/constants'
 import ProjectCard from './ProjectCard'
 
