@@ -31,7 +31,7 @@ const projects = [
         title: "Esnick",
         description: "E-commerce platform enhancing user experience with local market discovery and real-time communication tools.",
         link: "#",
-        badge: "LocalMarketLink",
+        badge: "EcommerceSpecialist",
         image: "/esnick.jpg",
     },
 ]

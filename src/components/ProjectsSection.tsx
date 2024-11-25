@@ -102,7 +102,7 @@ const ProjectsSection = () => {
   return (
     <section className="min-h-screen w-full py-20 bg-gray-100 dark:bg-gray-900" id="projects">
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-12 text-center flex items-center justify-center">
+        <h2 className="text-4xl font-bold mb-12 flex items-center justify-center">
           <Star className="mr-2 text-yellow-600" />
           Completed Quests
         </h2>
