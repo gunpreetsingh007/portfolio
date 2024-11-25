@@ -100,8 +100,8 @@ const ProjectsSection = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
-    nextArrow: isMobile ? null : <SampleNextArrow />,
-    prevArrow: isMobile ? null : <SamplePrevArrow />,
+    nextArrow: isMobile ? undefined : <SampleNextArrow />,
+    prevArrow: isMobile ? undefined : <SamplePrevArrow />,
   }
 
   return (
