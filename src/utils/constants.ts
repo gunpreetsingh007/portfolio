@@ -1,7 +1,7 @@
 const projects = [
     {
         title: "ProcessSafety",
-        description: "Template builder for workflows like permit to work, incident, and hazard management, transforming paper-based processes into digital solutions.",
+        description: "Template builder for workflows like permit to work, incident management etc, transforming paper-based processes into digital solutions.",
         link: "#",
         badge: "SafetyPro",
         image: "/process-safety.jpg",
@@ -22,7 +22,7 @@ const projects = [
     },
     {
         title: "Gnosis",
-        description: "AI-powered content curation platform for students with personalized recommendations on topics like machine learning and blockchain.",
+        description: "AI-powered content curation platform for students with personalized recommendations on different topics.",
         link: "#",
         badge: "KnowledgeSeeker",
         image: "/gnosis.jpg",
