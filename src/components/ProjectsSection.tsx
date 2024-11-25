@@ -69,15 +69,20 @@ const SamplePrevArrow = ({ style, onClick }: ArrowProps) => {
 
 const ProjectsSection = () => {
   const [slidesToShow, setSlidesToShow] = useState(3)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
+      const width = window.innerWidth
+      if (width < 640) {
         setSlidesToShow(1)
-      } else if (window.innerWidth < 1024) {
+        setIsMobile(true)
+      } else if (width < 1024) {
         setSlidesToShow(2)
+        setIsMobile(false)
       } else {
         setSlidesToShow(3)
+        setIsMobile(false)
       }
     }
 
@@ -95,21 +100,23 @@ const ProjectsSection = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: isMobile ? null : <SampleNextArrow />,
+    prevArrow: isMobile ? null : <SamplePrevArrow />,
   }
 
   return (
-    <section className="min-h-screen w-full py-20 bg-gray-100 dark:bg-gray-900" id="projects">
+    <section className="w-full py-20 bg-gray-100 dark:bg-gray-900" id="projects">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold mb-12 flex items-center justify-center">
           <Star className="mr-2 text-yellow-600" />
           Completed Quests
         </h2>
-        <div className="relative px-8">
+        <div className="relative md:px-8">
           <Slider {...settings}>
             {projects.map((project, index) => (
-              <ProjectCard key={index} {...project} />
+              <div key={index} className="h-full">
+                <ProjectCard {...project} />
+              </div>
             ))}
           </Slider>
         </div>
