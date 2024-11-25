@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from "next/image";
 
 interface ProjectCardProps {
   title: string
@@ -12,13 +13,20 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ title, description, link, badge, image }: ProjectCardProps) => {
   return (
-    <div className="px-4 py-4">
+    (<div className="px-4 py-4">
       <motion.div
         whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
         className="bg-white rounded-xl overflow-hidden shadow-lg dark:bg-gray-800 h-full flex flex-col"
       >
         <div className="relative h-48">
-          <img src={image} alt={title} className="w-full h-full object-cover" />
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: "cover"
+            }} />
         </div>
         <div className="p-6 flex flex-col flex-grow">
           <h3 className="text-2xl font-semibold mb-4">{title}</h3>
@@ -36,8 +44,8 @@ const ProjectCard = ({ title, description, link, badge, image }: ProjectCardProp
           </div>
         </div>
       </motion.div>
-    </div>
-  )
+    </div>)
+  );
 }
 
 export default ProjectCard

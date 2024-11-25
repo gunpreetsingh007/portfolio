@@ -20,9 +20,9 @@ export default function Home() {
         <meta name="author" content="Gunpreet Singh" />
         <meta property="og:title" content="Gunpreet Singh - Portfolio" />
         <meta property="og:description" content="Explore my projects, skills, and experience in tech development." />
-        <meta property="og:url" content="https://yourwebsite.com" />
+        <meta property="og:url" content="https://www.gunpreet.in" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/preview-image.png" />
+        <meta property="og:image" content="/coding.png" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
