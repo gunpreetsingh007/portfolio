@@ -34,7 +34,7 @@ const NotFoundPage = () => {
         <Gamepad2 className="w-16 h-16 mx-auto mb-4 text-blue-600 dark:text-blue-400" />
         <h1 className="text-4xl font-bold mb-2 text-gray-800 dark:text-gray-200">Oops! Page Not Found</h1>
         <p className="text-gray-600 dark:text-gray-400 mb-4">
-          Looks like you've ventured into uncharted territory!
+          Looks like you&apos;ve ventured into uncharted territory!
         </p>
         <div className="mb-6">
           <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">{score}</span>
@@ -42,7 +42,7 @@ const NotFoundPage = () => {
         </div>
         {gameOver ? (
           <div>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">Game Over! You've reached the legendary 404.</p>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">Game Over! You&apos;ve reached the legendary 404.</p>
             <button
               onClick={handleTryAgain}
               className="bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 hover:from-blue-500 hover:to-blue-700 mr-2"
