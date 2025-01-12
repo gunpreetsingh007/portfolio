@@ -17,7 +17,7 @@ const EXPERIENCES = [
     badge: 'Leadership Mastery',
   },
   {
-    title: 'Senior Full Stack Developer',
+    title: 'Full Stack Developer',
     company: 'SafetyConnect',
     period: 'March 2022 - Oct 2023',
     description: [
