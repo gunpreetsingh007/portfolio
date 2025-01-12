@@ -101,8 +101,10 @@ const ProjectsSection = () => {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     touchThreshold: 10,
-    nextArrow: isMobile ? undefined : <SampleNextArrow />,
-    prevArrow: isMobile ? undefined : <SamplePrevArrow />,
+    // Hide arrows on mobile:
+    arrows: !isMobile,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   }
 
   return (
@@ -110,7 +112,7 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold mb-12 flex items-center justify-center">
           <Star className="mr-2 text-yellow-600" />
-          Completed Quests
+          Highlighted Quests
         </h2>
         <div className="relative md:px-8">
           <Slider {...settings}>

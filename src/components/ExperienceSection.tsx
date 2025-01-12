@@ -9,6 +9,7 @@ const EXPERIENCES = [
     company: 'SafetyConnect',
     period: 'Nov 2023 - Present',
     description: [
+      "Lead the development of ProcessSafety, an advanced template builder to transition paper-based workflows like permit to work, incident management, into efficient digital solutions.",
       'Conducted code reviews and managed a team of 5 developers, ensuring code quality and adherence to best practices.',
       'Managed the complete development lifecycle, consistently delivering new modules on time.',
     ],
