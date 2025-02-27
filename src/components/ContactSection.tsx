@@ -6,7 +6,7 @@ import { useCallback, useState } from 'react';
 import { api } from '~/utils/api';
 import { toast } from 'react-toastify';
 
-const ContactSection = () => {
+const ContactSection = ({ experienceYears }: { experienceYears: number }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -47,7 +47,7 @@ const ContactSection = () => {
           <div className="mb-8 md:mb-0 md:w-1/2 flex">
             <NeumorphicCard className="flex-1 flex flex-col">
               <p className="text-lg mb-4">
-                Ready to embark on a new adventure? With over 3 years of experience in crafting exceptional web solutions,
+                Ready to embark on a new adventure? With over {experienceYears} years of experience in crafting exceptional web solutions,
                 I&apos;m always excited to take on new challenges and collaborations. Let&apos;s team up and create something extraordinary!
               </p>
               <p className="text-lg mb-2">Email: gunpreetsingh077@gmail.com</p>

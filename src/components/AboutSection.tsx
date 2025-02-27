@@ -3,7 +3,7 @@
 import { User } from "lucide-react"
 import NeumorphicCard from "./NeumorphicCard"
 
-const AboutSection = () => {
+const AboutSection = ({ experienceYears }: { experienceYears: number }) => {
 
     return (
         <section
@@ -18,7 +18,7 @@ const AboutSection = () => {
                 <div className="grid md:grid-cols-2 gap-8">
                     <NeumorphicCard>
                         <p className="text-lg mb-6">
-                            I&apos;m an Associate Tech Lead and Full Stack Developer with over 3 years of experience in building efficient, scalable, and
+                            I&apos;m an Associate Tech Lead and Full Stack Developer with over {experienceYears} years of experience in building efficient, scalable, and
                             user-friendly web applications. My journey in tech has led me from crafting wide range of websites across major categories to optimizing cloud solutions,
                             always with an eye on innovation and performance.
                         </p>
@@ -32,7 +32,7 @@ const AboutSection = () => {
                         <ul className="space-y-2">
                             <li className="flex justify-between">
                                 <span>Years of Experience</span>
-                                <span className="font-bold">3+</span>
+                                <span className="font-bold">{experienceYears}+</span>
                             </li>
                             <li className="flex justify-between">
                                 <span>Projects Completed</span>

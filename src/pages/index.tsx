@@ -10,6 +10,13 @@ import Head from 'next/head'
 import AboutSection from '~/components/AboutSection'
 
 export default function Home() {
+  // Calculate experience years dynamically starting from February 2021
+  const startDate = new Date(2021, 1); // February (month index 1)
+  const currentDate = new Date();
+  let experienceYears = currentDate.getFullYear() - startDate.getFullYear();
+  if (currentDate.getMonth() < startDate.getMonth()) {
+    experienceYears--;
+  }
   return (
     <>
       <Head>
@@ -31,13 +38,13 @@ export default function Home() {
       </Head>
       <Layout>
         <main>
-          <HeroSection />
-          <AboutSection />
+          <HeroSection experienceYears={experienceYears}/>
+          <AboutSection experienceYears={experienceYears}/>
           <SkillsSection />
           <ExperienceSection />
           <ProjectsSection />
           <AchievementsSection />
-          <ContactSection />
+          <ContactSection experienceYears={experienceYears}/>
         </main>
         <Footer />
       </Layout>

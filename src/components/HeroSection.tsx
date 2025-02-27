@@ -6,7 +6,7 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Environment, PerspectiveCamera } from '@react-three/drei'
 import { ChevronDown } from 'lucide-react'
 
-const HeroSection = () => {
+const HeroSection = ({ experienceYears }: { experienceYears: number }) => {
   const [isRotating, setIsRotating] = useState(false)
   const [isInteractionEnabled, setIsInteractionEnabled] = useState(false)
 
@@ -44,7 +44,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            With over 3 years of experience crafting exceptional web solutions
+            With over {experienceYears} years of experience crafting exceptional web solutions
           </motion.p>
           <motion.a
             onClick={handleScrollToContacts}
