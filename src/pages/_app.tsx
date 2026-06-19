@@ -1,6 +1,5 @@
 import { type AppType } from "next/app";
 import { Inter } from "next/font/google";
-import { api } from "~/utils/api";
 import 'react-toastify/dist/ReactToastify.css';
 import "~/styles/globals.css";
 import { ToastContainer } from 'react-toastify';
@@ -25,4 +24,4 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   );
 };
 
-export default api.withTRPC(MyApp);
+export default MyApp;

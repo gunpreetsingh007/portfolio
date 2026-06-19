@@ -1,5 +1,17 @@
 const projects = [
     {
+        title: "Just Virtual Food",
+        description: "Multi-tenant SaaS platform powering virtual food brands across delivery marketplaces, spanning sales CRM, partner billing, contracts, and analytics.",
+        link: "https://just-virtual-food.com",
+        badge: "SaaS Platform",
+        image: "/just-virtual-food.png",
+        keyPoints: [
+            "Lead backend architecture on Fastify, Prisma & TypeScript with BullMQ workers and AWS",
+            "Authored a modular backend template that became the foundation for the v2 rewrite",
+            "Shipped Sales CRM, analytics dashboards, billing & invoicing, and an AI overview module",
+        ],
+    },
+    {
         title: "ProcessSafety",
         description: "Advanced template builder streamlining workflows like permit to work and incident management, transitioning paper-based processes into efficient digital solutions.",
         link: "https://ps.safetyconnect.io",
@@ -28,7 +40,7 @@ const projects = [
         description: "Designed a bespoke e-commerce platform for Embark Perfumes, an esteemed Indian brand, featuring advanced admin tools for seamless inventory and order management.",
         link: "https://embark.gunpreet.in",
         badge: "E-Commerce Specialist",
-        image: "/embark-perfumes.png",
+        image: "/embark-perfumes.jpg",
         keyPoints: [
             "Conceived database architecture from the ground up",
             "Developed backend APIs and deployed on Ubuntu server",

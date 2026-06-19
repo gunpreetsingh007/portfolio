@@ -8,15 +8,15 @@ import "./src/env.js";
 const config = {
   reactStrictMode: true,
 
-  /**
-   * If you are using `appDir` then you must comment the below `i18n` config out.
-   *
-   * @see https://github.com/vercel/next.js/issues/41980
-   */
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+  // Produce a fully static site (`next build` emits ./out) so it can be hosted
+  // on any static CDN like Cloudflare Pages with zero server runtime.
+  output: "export",
+
+  // next/image optimization requires a server; disable it for static export.
+  images: {
+    unoptimized: true,
   },
+
   transpilePackages: ["geist"],
 };
 

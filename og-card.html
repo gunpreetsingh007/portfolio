@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OG Card — export to public/coding.png (1200×630)</title>
+<!--
+  HOW TO EXPORT TO public/coding.png:
+  1. Open this file in Chrome.
+  2. Open DevTools (F12) → run device toolbar OFF, zoom 100%.
+  3. Right-click the card → Inspect → in Elements, right-click the
+     <div class="card"> element → "Capture node screenshot".
+  4. Save the PNG as public/coding.png (it will be exactly 1200×630).
+  (Alternatively, screenshot the card region manually.)
+-->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a1a; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Inter', sans-serif; }
+
+  .card {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: radial-gradient(120% 120% at 80% 10%, #064e3b 0%, #0b1220 45%, #0c0f14 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 72px 80px;
+  }
+
+  /* grid texture */
+  .card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(120% 120% at 70% 30%, #000 30%, transparent 80%);
+  }
+  /* glow orbs */
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); }
+  .orb-1 { width: 420px; height: 420px; background: rgba(16,185,129,0.35); top: -120px; right: -80px; }
+  .orb-2 { width: 360px; height: 360px; background: rgba(59,130,246,0.25); bottom: -140px; left: -60px; }
+
+  .top { position: relative; display: flex; align-items: center; gap: 16px; }
+  .badge {
+    width: 64px; height: 64px; border-radius: 16px;
+    background: linear-gradient(135deg, #34d399, #2563eb);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 28px; color: #fff;
+    box-shadow: 0 8px 30px rgba(16,185,129,0.4);
+  }
+  .domain { font-family: 'JetBrains Mono', monospace; font-size: 20px; color: #9ca3af; letter-spacing: 0.02em; }
+
+  .main { position: relative; }
+  .eyebrow {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; color: #6ee7b7;
+    border: 1px solid rgba(110,231,183,0.3);
+    background: rgba(16,185,129,0.08);
+    padding: 8px 16px; border-radius: 999px;
+    margin-bottom: 28px;
+  }
+  .name { font-size: 96px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .role { font-size: 40px; font-weight: 600; color: #e5e7eb; margin-top: 18px; }
+  .role .accent { color: #34d399; }
+
+  .bottom { position: relative; display: flex; gap: 40px; align-items: center; }
+  .metric { display: flex; flex-direction: column; }
+  .metric .num { font-size: 34px; font-weight: 700; color: #fff; }
+  .metric .lbl { font-size: 17px; color: #9ca3af; margin-top: 2px; }
+  .divider { width: 1px; height: 48px; background: rgba(255,255,255,0.15); }
+  .kbd {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; color: #9ca3af;
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; padding: 8px 14px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="top">
+      <div class="badge">GS</div>
+      <div class="domain">gunpreet.in</div>
+    </div>
+
+    <div class="main">
+      <span class="eyebrow">Tech Lead &amp; Full Stack Developer</span>
+      <div class="name">Gunpreet Singh</div>
+      <div class="role">I build <span class="accent">scalable, real-time products</span></div>
+    </div>
+
+    <div class="bottom">
+      <div class="metric">
+        <span class="num">~90%</span>
+        <span class="lbl">faster APIs</span>
+      </div>
+      <div class="divider"></div>
+      <div class="metric">
+        <span class="num">~65%</span>
+        <span class="lbl">lower cloud cost</span>
+      </div>
+      <div class="divider"></div>
+      <div class="metric">
+        <span class="num">Full-stack</span>
+        <span class="lbl">ownership</span>
+      </div>
+      <span class="kbd">⌘K to explore</span>
+    </div>
+  </div>
+</body>
+</html>

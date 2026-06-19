@@ -5,9 +5,24 @@ import ExperienceCard from './ExperienceCard'
 
 const EXPERIENCES = [
   {
+    title: 'Tech Lead',
+    company: 'Just Virtual Food',
+    companyLink: 'https://just-virtual-food.com',
+    period: 'Jul 2025 - Present',
+    description: [
+      'Lead backend architecture for a multi-tenant SaaS platform powering virtual food brands, built on Fastify, Prisma & TypeScript with BullMQ workers and AWS (S3/SQS).',
+      'Designed a modular backend template (module-registry pattern, better-auth, Chargebee) that became the foundation for the platform\u2019s v2 rewrite.',
+      'Shipped a full Sales CRM, analytics dashboards, global search, and an AI overview module, alongside PostHog product analytics.',
+      'Built contract management with Documenso e-signatures, multi-language localization, and handled the migration of the platform to the new v2 architecture.',
+    ],
+    xp: '+3500',
+    badge: 'Platform Architect',
+  },
+  {
     title: 'Associate Technical Lead',
     company: 'SafetyConnect',
-    period: 'Nov 2023 - Present',
+    companyLink: 'https://safetyconnect.io',
+    period: 'Nov 2023 - May 2025',
     description: [
       "Lead the development of ProcessSafety, an advanced template builder to transition paper-based workflows like permit to work, incident management, into efficient digital solutions.",
       'Conducted code reviews and managed a team of 5 developers, ensuring code quality and adherence to best practices.',
@@ -19,6 +34,7 @@ const EXPERIENCES = [
   {
     title: 'Full Stack Developer',
     company: 'SafetyConnect',
+    companyLink: 'https://safetyconnect.io',
     period: 'March 2022 - Oct 2023',
     description: [
       'Optimized queries and database schema, reducing critical API response times by roughly 90%.',
@@ -44,6 +60,7 @@ const EXPERIENCES = [
   {
     title: 'Full Stack Developer and Software Architect',
     company: 'Freelance - Embark Perfumes',
+    companyLink: 'https://embarkperfumes.in',
     description: [
       'Designed and developed a bespoke e-commerce platform for Embark Perfumes, a popular Indian Perfume brand.',
       'Implemented SEO strategies and responsive design principles to optimize visibility and accessibility across devices.',
@@ -68,6 +85,7 @@ const ExperienceSection = () => {
               key={experience.title}
               title={experience.title}
               company={experience.company}
+              companyLink={'companyLink' in experience ? experience.companyLink : undefined}
               period={experience.period}
               description={experience.description}
               xp={experience.xp}

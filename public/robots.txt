@@ -1,9 +1,4 @@
-# *
 User-agent: *
 Allow: /
 
-# Host
-Host: https://www.gunpreet.in
-
-# Sitemaps
 Sitemap: https://www.gunpreet.in/sitemap.xml

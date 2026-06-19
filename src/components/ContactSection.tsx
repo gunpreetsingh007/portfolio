@@ -3,8 +3,10 @@
 import { Mail, Github, Linkedin, Send } from 'lucide-react'
 import NeumorphicCard from './NeumorphicCard'
 import { useCallback, useState } from 'react';
-import { api } from '~/utils/api';
 import { toast } from 'react-toastify';
+
+// Public access key from https://web3forms.com — safe to expose client-side.
+const WEB3FORMS_ACCESS_KEY = '8b4706d9-9536-4a49-80d6-79f7d93d6c49';
 
 const ContactSection = ({ experienceYears }: { experienceYears: number }) => {
   const [formData, setFormData] = useState({
@@ -12,7 +14,7 @@ const ContactSection = ({ experienceYears }: { experienceYears: number }) => {
     email: "",
     message: "",
   });
-  const sendMessageMutation = api.contact.sendMessage.useMutation();
+  const [isSending, setIsSending] = useState(false);
 
   const handleChange = useCallback((
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,14 +24,31 @@ const ContactSection = ({ experienceYears }: { experienceYears: number }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSending(true);
 
     try {
-      await sendMessageMutation.mutateAsync(formData);
-      toast.success("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Portfolio message from ${formData.name}`,
+          from_name: 'gunpreet.in',
+          ...formData,
+        }),
+      });
+      const data = (await res.json()) as { success?: boolean };
+      if (data.success) {
+        toast.success("Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error('Submission failed');
+      }
     } catch (err) {
       console.error("Error sending message:", err);
       toast.error("Failed to send message. Please try again later.");
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -41,7 +60,7 @@ const ContactSection = ({ experienceYears }: { experienceYears: number }) => {
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold mb-12 flex items-center justify-center">
           <Send className="mr-2 text-red-600" />
-          Start a New Quest
+          Get in Touch
         </h2>
         <div className="flex flex-col md:flex-row justify-between items-stretch">
           <div className="mb-8 md:mb-0 md:w-1/2 flex">
@@ -69,7 +88,7 @@ const ContactSection = ({ experienceYears }: { experienceYears: number }) => {
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
                   <textarea id="message" name="message" rows={4} value={formData.message} onChange={handleChange} className="w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
                 </div>
-                <button type="submit" disabled={sendMessageMutation.isPending} className="w-full bg-gradient-to-r from-blue-400 to-blue-600 text-white py-2 px-4 rounded-md hover:from-blue-500 hover:to-blue-700 transition duration-300"><span className={sendMessageMutation.isPending ? 'fas fa-spinner fa-pulse' : ''}>{!sendMessageMutation.isPending ? "Send Message" : ""}</span></button>
+                <button type="submit" disabled={isSending} className="w-full bg-gradient-to-r from-blue-400 to-blue-600 text-white py-2 px-4 rounded-md hover:from-blue-500 hover:to-blue-700 transition duration-300 disabled:opacity-60">{isSending ? "Sending…" : "Send Message"}</button>
               </form>
             </NeumorphicCard>
           </div>

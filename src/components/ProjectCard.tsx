@@ -14,7 +14,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ title, description, link, badge, image, keyPoints }: ProjectCardProps) => {
   return (
-    (<div className="px-4 py-4">
+    (<div className="h-full">
       <motion.div
         whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
         className="bg-white rounded-xl overflow-hidden shadow-lg dark:bg-gray-800 h-full flex flex-col"
@@ -41,9 +41,10 @@ const ProjectCard = ({ title, description, link, badge, image, keyPoints }: Proj
             <a
               href={link}
               target="_blank"
-              className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition duration-300"
+              rel="noopener noreferrer"
+              className="font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition duration-300"
             >
-              View Quest
+              Visit Site →
             </a>
             <span className="inline-block bg-gradient-to-r from-purple-400 to-purple-600 text-white text-xs px-2 py-1 rounded-full">
               {badge}

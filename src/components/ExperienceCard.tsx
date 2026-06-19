@@ -7,6 +7,7 @@ import NeumorphicCard from './NeumorphicCard'
 interface ExperienceCardProps {
   title: string
   company: string
+  companyLink?: string
   period?: string
   description: string[]
   xp: string
@@ -16,6 +17,7 @@ interface ExperienceCardProps {
 const ExperienceCard = ({
   title,
   company,
+  companyLink,
   period,
   description,
   xp,
@@ -36,7 +38,19 @@ const ExperienceCard = ({
       <NeumorphicCard scale={1.02}>
         <h3 className="text-2xl font-semibold mb-2">{title}</h3>
         <p className="text-gray-600 mb-4 dark:text-gray-400">
-          {company} {period && `| ${period}`}
+          {companyLink ? (
+            <a
+              href={companyLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300"
+            >
+              {company}
+            </a>
+          ) : (
+            company
+          )}{' '}
+          {period && `| ${period}`}
         </p>
         <ul className="list-disc list-inside space-y-2 mb-4">
           {description.map((item, index) => (

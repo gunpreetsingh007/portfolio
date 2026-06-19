@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Menu, X, Zap, Sun, Moon } from 'lucide-react'
+import { Menu, X, Zap, Sun, Moon, Command } from 'lucide-react'
 
 interface HeaderProps {
   isDarkMode: boolean
@@ -71,6 +71,7 @@ const Header = ({ isDarkMode, toggleDarkMode }: HeaderProps) => {
                 { label: 'Experience', id: 'experience' },
                 { label: 'Projects', id: 'projects' },
                 { label: 'Achievements', id: 'achievements' },
+                { label: 'Terminal', id: 'terminal' },
                 { label: 'Contact', id: 'contact' },
               ].map(({ label, id }) => (
                 <li key={id}>
@@ -82,6 +83,15 @@ const Header = ({ isDarkMode, toggleDarkMode }: HeaderProps) => {
                   </button>
                 </li>
               ))}
+              <li>
+                <button
+                  onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, ctrlKey: true }))}
+                  aria-label="Open command palette"
+                  className="hidden items-center gap-1.5 rounded-md border border-gray-300 px-2 py-1 text-xs text-gray-500 transition hover:border-gray-400 hover:text-gray-800 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white md:flex"
+                >
+                  <Command size={13} /> K
+                </button>
+              </li>
               <li>
                 <button
                   onClick={toggleDarkMode}
