@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   Search, User, Code, Briefcase, Star, Trophy, Send,
-  Github, Linkedin, Mail, FileText, Moon, Sun, CornerDownLeft, TerminalSquare,
+  Github, Linkedin, Mail, Moon, Sun, CornerDownLeft, TerminalSquare,
 } from 'lucide-react'
 
 interface CommandPaletteProps {
@@ -54,7 +54,8 @@ const CommandPalette = ({ isDarkMode, toggleDarkMode }: CommandPaletteProps) => 
     { id: 'achievements', label: 'Go to Achievements', hint: 'Section', icon: <Trophy size={16} />, run: () => goTo('achievements') },
     { id: 'terminal', label: 'Go to Terminal', hint: 'Section', icon: <TerminalSquare size={16} />, keywords: 'shell console cli', run: () => goTo('terminal') },
     { id: 'contact', label: 'Go to Contact', hint: 'Section', icon: <Send size={16} />, run: () => goTo('contact') },
-    { id: 'resume', label: 'Download Résumé', hint: 'PDF', icon: <FileText size={16} />, keywords: 'cv pdf', run: () => openLink('/resume.pdf') },
+    // Résumé entry hidden until a resume PDF is available
+    // { id: 'resume', label: 'Download Résumé', hint: 'PDF', icon: <FileText size={16} />, keywords: 'cv pdf', run: () => openLink('/resume.pdf') },
     { id: 'theme', label: isDarkMode ? 'Switch to Light mode' : 'Switch to Dark mode', hint: 'Theme', icon: isDarkMode ? <Sun size={16} /> : <Moon size={16} />, keywords: 'dark light toggle', run: () => { toggleDarkMode(); close() } },
     { id: 'github', label: 'Open GitHub', hint: 'Link', icon: <Github size={16} />, keywords: 'code repo', run: () => openLink('https://github.com/gunpreetsingh007') },
     { id: 'linkedin', label: 'Open LinkedIn', hint: 'Link', icon: <Linkedin size={16} />, run: () => openLink('https://www.linkedin.com/in/gunpreet-singh-887006159/') },

@@ -74,9 +74,10 @@ const Terminal = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }, [])
 
-  const openResume = useCallback(() => {
-    window.open('/resume.pdf', '_blank', 'noopener,noreferrer')
-  }, [])
+  // Résumé disabled until a resume PDF is available
+  // const openResume = useCallback(() => {
+  //   window.open('/resume.pdf', '_blank', 'noopener,noreferrer')
+  // }, [])
 
   // Command registry --------------------------------------------------------
   const commands = useMemo(() => {
@@ -242,19 +243,20 @@ const Terminal = () => {
       ),
     }
 
-    registry.resume = {
-      desc: 'Open my résumé (PDF)',
-      run: () => {
-        openResume()
-        return (
-          <Line className="text-gray-400">
-            Opening <Link href="/resume.pdf">/resume.pdf</Link> … (if nothing opened, it may not be added yet)
-          </Line>
-        )
-      },
-    }
+    // Résumé commands disabled until a resume PDF is available
+    // registry.resume = {
+    //   desc: 'Open my résumé (PDF)',
+    //   run: () => {
+    //     openResume()
+    //     return (
+    //       <Line className="text-gray-400">
+    //         Opening <Link href="/resume.pdf">/resume.pdf</Link> … (if nothing opened, it may not be added yet)
+    //       </Line>
+    //     )
+    //   },
+    // }
 
-    registry.cv = { desc: 'Alias for resume', hidden: true, run: registry.resume.run }
+    // registry.cv = { desc: 'Alias for resume', hidden: true, run: registry.resume.run }
 
     registry.ls = {
       desc: 'List sections of this site',
@@ -263,7 +265,7 @@ const Terminal = () => {
           {SECTIONS.map((s) => (
             <span key={s} className="text-blue-300">{`${s}/  `}</span>
           ))}
-          <span className="text-gray-300">resume.pdf</span>
+          {/* resume.pdf hidden until a resume is available */}
         </Line>
       ),
     }
@@ -330,7 +332,7 @@ const Terminal = () => {
     }
 
     return registry
-  }, [openResume, scrollToSection])
+  }, [scrollToSection])
 
   const commandNames = useMemo(() => Object.keys(commands), [commands])
 

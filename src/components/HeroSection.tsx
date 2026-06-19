@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown, ArrowRight, Github, Linkedin, FileText } from 'lucide-react'
+import { ChevronDown, ArrowRight, Github, Linkedin } from 'lucide-react'
 
 const ROLES = [
   'scalable APIs',
@@ -143,6 +143,7 @@ const HeroSection = ({ experienceYears }: { experienceYears: number }) => {
             View My Work
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
           </button>
+          {/* Résumé button hidden until a resume PDF is available
           <a
             href="/resume.pdf"
             target="_blank"
@@ -151,6 +152,7 @@ const HeroSection = ({ experienceYears }: { experienceYears: number }) => {
           >
             <FileText size={18} /> Résumé
           </a>
+          */}
           <div className="flex items-center gap-4 sm:ml-2">
             <a href="https://github.com/gunpreetsingh007" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-400 transition hover:text-white">
               <Github size={22} />
