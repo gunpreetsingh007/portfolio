@@ -35,13 +35,8 @@ function Avatar() {
         className="absolute -inset-1.5 rounded-full bg-gradient-to-br from-emerald-400/50 to-blue-600/50 blur-md"
         aria-hidden
       />
+      {/* avatar.png already has the gradient backdrop baked in; the bg here is just a fallback for the "GS" state */}
       <div className="relative h-full w-full overflow-hidden rounded-full bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-600 shadow-xl ring-4 ring-white dark:ring-gray-800">
-        {/* Top highlight to give the gradient depth */}
-        <div
-          className="absolute inset-0"
-          style={{ background: 'radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.35), transparent 60%)' }}
-          aria-hidden
-        />
         {failed ? (
           <div className="flex h-full w-full items-center justify-center text-3xl font-bold text-white">
             GS
