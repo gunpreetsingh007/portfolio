@@ -70,7 +70,9 @@ Already done (do not re-report as pending):
 
 ## Build / deploy
 - Dev: `npm run dev` · Build (static): `npm run build` → outputs `./out`.
-- Deploy: upload `./out` to **Cloudflare Pages** (or connect repo: build `npm run build`, output dir `out`). Point `gunpreet.in` DNS at it; the old Oracle Ubuntu server is no longer needed for this site.
+- **Deploy is automatic** (confirmed Sept 2026): the GitHub repo is connected to **Cloudflare Pages**, so pushing to `main` rebuilds and publishes within a couple of minutes. There is no manual upload step — treat every push to `main` as publishing to a live, search-indexed site.
+- **`public/resume.pdf` is a committed artifact.** Cloudflare runs `npm run build`, which does *not* regenerate it. After changing résumé content, run `npm run resume:pdf` and commit the result, or the site and the downloadable PDF will disagree.
+- Anything placed in `public/` is served at a public URL once deployed, whether or not the site links to it. Unlinked is not private.
 - After deploy: submit `public/sitemap.xml` in Google Search Console.
 
 ## Contact data (single source of truth, keep consistent everywhere)

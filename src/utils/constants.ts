@@ -38,7 +38,7 @@ const projects = [
     {
         title: "EmbarkPerfumes",
         description: "Designed a bespoke e-commerce platform for Embark Perfumes, an esteemed Indian brand, featuring advanced admin tools for seamless inventory and order management.",
-        link: "https://embark.gunpreet.in",
+        link: "https://www.embarkperfumes.com",
         badge: "E-Commerce Specialist",
         image: "/embark-perfumes.jpg",
         keyPoints: [

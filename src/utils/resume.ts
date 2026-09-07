@@ -228,7 +228,9 @@ export const FREELANCE: Role[] = [
   {
     title: 'Full Stack Developer & Software Architect',
     company: 'Embark Perfumes',
-    companyLink: 'https://embarkperfumes.in',
+    // The client's live storefront. embarkperfumes.in and embark.gunpreet.in are
+    // both dead — do not restore either.
+    companyLink: 'https://www.embarkperfumes.com',
     highlights: [
       'Designed and built a bespoke e-commerce platform for an established Indian perfume brand, including an admin panel for product and inventory management.',
       'Implemented SEO and responsive design, improving visibility and cross-device accessibility.',
