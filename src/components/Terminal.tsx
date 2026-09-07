@@ -257,7 +257,7 @@ const Terminal = () => {
           <Heading>References</Heading>
           {publishedReferences().map((reference) => (
             <React.Fragment key={reference.id}>
-              <Line className="text-gray-300">{reference.quote}</Line>
+              <Line className="text-gray-300">{`“${reference.pullQuote}”`}</Line>
               <Line className="text-gray-500">
                 {`— ${reference.author}, ${reference.authorTitle}, ${reference.authorCompany}`}
               </Line>

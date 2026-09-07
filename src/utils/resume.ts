@@ -292,9 +292,15 @@ export type Reference = {
   id: string
   /** Gate publication per letter — each author consents separately. */
   published: boolean
-  /** Sets up what the letter covers. */
-  context: string
-  quote: string
+  /**
+   * Verbatim passages, in the order they appear in the letter. Each entry is a
+   * SEPARATE excerpt and is rendered as such — they are not contiguous text, so
+   * they must never be run together into one quotation. Trailing "…" marks where
+   * a sentence continues in the original.
+   */
+  excerpts: string[]
+  /** One verbatim sentence for compact contexts. */
+  pullQuote: string
   author: string
   authorTitle: string
   authorCompany: string
@@ -312,10 +318,12 @@ export const REFERENCES: Reference[] = [
   {
     id: 'just-virtual-food',
     published: true,
-    context:
-      'Mr Singh was responsible for the technical leadership of our software organisation and for the design, delivery and quality of our product platforms.',
-    quote:
-      'We were always extremely pleased with his performance in every respect. We recommend him without reservation.',
+    excerpts: [
+      'During his employment, Mr Singh was responsible for the technical leadership of our software organisation and for the design, delivery and quality of our product platforms…',
+      'Mr Singh performed all of his duties always to our fullest satisfaction.',
+      'We thank Mr Singh for his outstanding contribution to Just Virtual Food and confirm that we were always extremely pleased with his performance in every respect. We recommend him without reservation…',
+    ],
+    pullQuote: 'We recommend him without reservation…',
     author: 'Niklas Braun',
     authorTitle: 'Chief Technology Officer',
     authorCompany: 'Just Virtual Food Brands GmbH',
@@ -327,10 +335,14 @@ export const REFERENCES: Reference[] = [
     id: 'embark-perfumes',
     // Not yet published — Varsha Dalal has not been asked. See AGENTS.md.
     published: false,
-    context:
+    excerpts: [
       'It is our absolute pleasure and honour to recommend the services of Mr. Gunpreet Singh.',
-    quote:
-      'The work not only met my expectations, it exceeded them. We have no reservations giving Gunpreet my highest recommendation.',
+      'During the scope of the project, Gunpreet Singh demonstrated a good work ethic and successfully completed the project within the agreed upon time. We can happily report that the work not only met my expectations, it exceeded them.',
+      'We have no reservations giving Gunpreet my highest recommendation. We are very confident that you cannot go wrong by hiring him.',
+    ],
+    // Transcribed by eye — the letter is a scan with no text layer, so unlike the
+    // Just Virtual Food excerpts these cannot be machine-checked against a source.
+    pullQuote: 'We can happily report that the work not only met my expectations, it exceeded them.',
     author: 'Varsha Dalal',
     authorTitle: 'Founder',
     authorCompany: 'Embark Perfumes',
