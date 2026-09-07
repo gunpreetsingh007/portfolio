@@ -2,7 +2,7 @@ const projects = [
     {
         title: "Just Virtual Food",
         description: "Multi-tenant SaaS platform powering virtual food brands across delivery marketplaces, spanning sales CRM, contracts, and analytics for 600+ restaurant partners in the DACH region.",
-        link: "https://just-virtual-food.com",
+        link: "https://www.just-virtual-food.com",
         badge: "SaaS Platform",
         image: "/just-virtual-food.png",
         keyPoints: [

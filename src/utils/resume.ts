@@ -164,7 +164,7 @@ export const EXPERIENCE: Role[] = [
   {
     title: 'Technical Lead',
     company: 'Just Virtual Food Brands GmbH',
-    companyLink: 'https://just-virtual-food.com',
+    companyLink: 'https://www.just-virtual-food.com',
     location: 'Vienna, Austria (Remote)',
     start: '2025-07',
     end: '2026-08',
@@ -228,8 +228,9 @@ export const FREELANCE: Role[] = [
   {
     title: 'Full Stack Developer & Software Architect',
     company: 'Embark Perfumes',
-    // The client's live storefront. embarkperfumes.in and embark.gunpreet.in are
-    // both dead — do not restore either.
+    // The client's live storefront, and the domain their own recommendation
+    // letter cites. Previously pointed at embark.gunpreet.in / embarkperfumes.in,
+    // neither of which is the client's canonical address.
     companyLink: 'https://www.embarkperfumes.com',
     highlights: [
       'Designed and built a bespoke e-commerce platform for an established Indian perfume brand, including an admin panel for product and inventory management.',
