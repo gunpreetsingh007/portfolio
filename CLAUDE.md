@@ -64,13 +64,56 @@ Gmail values. Nothing reads it. Do not read, print, or copy it — `.claude/sett
 denies access to `.env*` on purpose, and that rule applies to Bash commands too,
 not just the Read tool.
 
-## The Terminal mirror trap
+## Résumé and site content — one source of truth
 
-`src/components/Terminal.tsx` duplicates the about / skills / experience /
-achievements copy inline. Projects are shared from `~/utils/constants`, but the
-rest is not. **Whenever you change copy in `AboutSection`, `SkillsSection`,
-`ExperienceSection`, or `AchievementsSection`, update the matching block in
-`Terminal.tsx` in the same change**, or the site and the terminal will disagree.
+`src/utils/resume.ts` owns profile, summary, skills, experience, freelance,
+education, achievements and the reference block. It feeds **all** of:
+`SkillsSection`, `ExperienceSection`, `AchievementsSection`, `Terminal.tsx`, and
+the `/resume` page that generates the PDF.
+
+**Edit copy there, never in a component.** This replaced an earlier arrangement
+where `Terminal.tsx` duplicated the copy inline — the two had already drifted
+(the terminal claimed SafetyConnect ended Jun 2025, the site said May 2025).
+Do not reintroduce local copies.
+
+Dates are stored as `YYYY-MM` and rendered by `formatPeriod`, so a role's period
+is written once. Omitting `end` renders "Present".
+
+**Experience duration** is derived from `CAREER_START` and the roles, never
+hardcoded. Two rules matter:
+
+1. **It stops accruing when not employed.** `experienceEnd` runs to the end of the
+   most recent role, and only counts to today when that role has no `end`. Adding
+   a new current role resumes it automatically. A naive "now minus career start"
+   silently inflates the figure during a gap between jobs.
+2. **It must survive static export.** `index.tsx` computes it in `getStaticProps`
+   so the first client render matches the prerendered HTML, and `useExperience`
+   refreshes it after mount. That is dormant while the figure is frozen, and load
+   bearing again the moment a current role exists.
+
+`formatExperienceApprox()` ("nearly 6 years") is for prose; `formatExperience()`
+("5 years 7 months") is the exact form. Terminal output is generated after
+hydration, so it calls the function directly. Never hardcode a duration.
+
+### Regenerating the PDF
+
+```bash
+npm run build && npm run resume:pdf
+```
+
+`scripts/build-resume.cjs` serves `out/` on a random port and drives headless
+Chrome/Edge to print `/resume` into `public/resume.pdf`. Notes that cost time to
+rediscover:
+
+- **Stop `npm run dev` first.** The dev server watches `public/` and truncates
+  the PDF mid-write into a ~1 KB blank file.
+- The script waits for the PDF to stop growing rather than for the browser to
+  exit, because on Windows the launched executable hands off to another process
+  and exits immediately.
+- `--no-proxy-server` and an isolated `--user-data-dir` are both required, or the
+  browser prints its own "can't reach this page" error into the PDF.
+- Never swap this for a client-side HTML-to-PDF library. Print-to-PDF keeps a
+  real text layer, which is what ATS parsers read.
 
 ## Contact data — one source of truth
 

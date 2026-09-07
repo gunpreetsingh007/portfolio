@@ -1,14 +1,14 @@
 const projects = [
     {
         title: "Just Virtual Food",
-        description: "Multi-tenant SaaS platform powering virtual food brands across delivery marketplaces, spanning sales CRM, partner billing, contracts, and analytics.",
+        description: "Multi-tenant SaaS platform powering virtual food brands across delivery marketplaces, spanning sales CRM, contracts, and analytics for 600+ restaurant partners in the DACH region.",
         link: "https://just-virtual-food.com",
         badge: "SaaS Platform",
         image: "/just-virtual-food.png",
         keyPoints: [
             "Lead backend architecture on Fastify, Prisma & TypeScript with BullMQ workers and AWS",
             "Authored a modular backend template that became the foundation for the v2 rewrite",
-            "Shipped Sales CRM, analytics dashboards, billing & invoicing, and an AI overview module",
+            "Shipped Sales CRM, analytics dashboards, global search, and an AI overview module",
         ],
     },
     {

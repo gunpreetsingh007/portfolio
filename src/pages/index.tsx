@@ -9,20 +9,38 @@ import ContactSection from '~/components/ContactSection'
 import Footer from '~/components/Footer'
 import Head from 'next/head'
 import AboutSection from '~/components/AboutSection'
+import { experienceYearsRounded, formatExperienceApprox } from '~/utils/resume'
+import { useExperience } from '~/utils/useExperience'
 
-export default function Home() {
-  // Calculate experience years dynamically starting from February 2021
-  const startDate = new Date(2021, 1); // February (month index 1)
-  const currentDate = new Date();
-  let experienceYears = currentDate.getFullYear() - startDate.getFullYear();
-  if (currentDate.getMonth() < startDate.getMonth()) {
-    experienceYears--;
+/**
+ * Experience duration is computed at build time and serialised into the page, so
+ * hydration matches the prerendered HTML exactly. `useExperience` then refreshes
+ * it against the visitor's own date — see src/utils/useExperience.ts.
+ */
+export function getStaticProps() {
+  return {
+    props: {
+      experienceYears: experienceYearsRounded(),
+      builtExperience: formatExperienceApprox(),
+    },
   }
+}
+
+export default function Home({
+  experienceYears,
+  builtExperience,
+}: {
+  experienceYears: number
+  builtExperience: string
+}) {
+  const experience = useExperience(builtExperience)
+
   return (
     <>
       <Head>
         <title>Gunpreet Singh - Tech Lead & Full Stack Developer</title>
-        <meta name="description" content="Portfolio of Gunpreet Singh, a Tech Lead & Full Stack Developer with 5+ years building scalable web apps, cloud solutions, and real-time products." />
+        {/* Duration is interpolated from the build-time value — never hardcode it. */}
+        <meta name="description" content={`Portfolio of Gunpreet Singh, a Tech Lead & Full Stack Developer with ${builtExperience} building scalable web apps, cloud solutions, and real-time products.`} />
         <meta name="keywords" content="Gunpreet Singh, Full Stack Developer, Tech Lead, Portfolio, Web Development, React.js, Node.js, Next.js, AWS, TypeScript" />
         <meta name="author" content="Gunpreet Singh" />
         <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -34,7 +52,7 @@ export default function Home() {
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Gunpreet Singh" />
         <meta property="og:title" content="Gunpreet Singh - Tech Lead & Full Stack Developer" />
-        <meta property="og:description" content="5+ years building scalable web apps, cloud solutions, and real-time products. Explore my projects, skills, and experience." />
+        <meta property="og:description" content={`${builtExperience} building scalable web apps, cloud solutions, and real-time products. Explore my projects, skills, and experience.`} />
         <meta property="og:url" content="https://www.gunpreet.in/" />
         <meta property="og:image" content="https://www.gunpreet.in/coding.png" />
         <meta property="og:image:width" content="1200" />
@@ -44,7 +62,7 @@ export default function Home() {
         {/* Twitter / X Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Gunpreet Singh - Tech Lead & Full Stack Developer" />
-        <meta name="twitter:description" content="5+ years building scalable web apps, cloud solutions, and real-time products." />
+        <meta name="twitter:description" content={`${builtExperience} building scalable web apps, cloud solutions, and real-time products.`} />
         <meta name="twitter:image" content="https://www.gunpreet.in/coding.png" />
 
         {/* Structured data: Person schema for rich results */}
@@ -77,14 +95,14 @@ export default function Home() {
       </Head>
       <Layout>
         <main>
-          <HeroSection experienceYears={experienceYears}/>
-          <AboutSection experienceYears={experienceYears}/>
+          <HeroSection experience={experience}/>
+          <AboutSection experience={experience} experienceYears={experienceYears}/>
           <SkillsSection />
           <ExperienceSection />
           <ProjectsSection />
           <AchievementsSection />
           <Terminal />
-          <ContactSection experienceYears={experienceYears}/>
+          <ContactSection experience={experience}/>
         </main>
         <Footer />
       </Layout>

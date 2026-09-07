@@ -4,13 +4,7 @@ import { Code } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import NeumorphicCard from './NeumorphicCard'
-
-const SKILL_GROUPS: { category: string; skills: string[] }[] = [
-  { category: 'Frontend', skills: ['React.js', 'Next.js', 'TypeScript', 'JavaScript', 'Redux', 'Tailwind CSS'] },
-  { category: 'Backend', skills: ['Node.js', 'Express.js', 'PHP', 'Laravel', 'Python', 'REST APIs', 'WebSockets'] },
-  { category: 'Database', skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis'] },
-  { category: 'DevOps & Cloud', skills: ['AWS', 'Azure', 'Docker', 'CI/CD', 'Linux'] },
-]
+import { SKILL_GROUPS } from '~/utils/resume'
 
 const SkillsSection = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })

@@ -3,46 +3,39 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TerminalSquare } from 'lucide-react'
 import { projects } from '~/utils/constants'
+import {
+  ACHIEVEMENTS,
+  EXPERIENCE,
+  FREELANCE,
+  PROFILE,
+  REFERENCES_PATH,
+  RESUME_PDF,
+  publishedReferences,
+  SKILL_GROUPS,
+  formatPeriod,
+  // Terminal output is only produced after hydration, in response to a typed
+  // command, so it can compute the live duration directly.
+  formatExperienceApprox as experienceYears,
+} from '~/utils/resume'
 
 const USER = 'guest'
 const HOST = 'gunpreet.in'
 const PROMPT = `${USER}@${HOST}:~$`
 
-const EMAIL = 'gunpreetsingh077@gmail.com'
-const PHONE = '+91 77809 03638'
-const GITHUB = 'https://github.com/gunpreetsingh007'
-const LINKEDIN = 'https://www.linkedin.com/in/gunpreet-singh-887006159/'
+// Contact + copy come from ~/utils/resume — the single source of truth shared
+// with the site sections and the /resume PDF. Do not re-declare them here.
+const EMAIL = PROFILE.email
+const PHONE = PROFILE.phone
+const GITHUB = PROFILE.github
+const LINKEDIN = PROFILE.linkedin
 
 const SECTIONS = ['about', 'skills', 'experience', 'projects', 'achievements', 'terminal', 'contact']
 
-const SKILL_GROUPS: { category: string; skills: string[] }[] = [
-  { category: 'Frontend', skills: ['React.js', 'Next.js', 'TypeScript', 'JavaScript', 'Redux', 'Tailwind CSS'] },
-  { category: 'Backend', skills: ['Node.js', 'Express.js', 'PHP', 'Laravel', 'Python', 'REST APIs', 'WebSockets'] },
-  { category: 'Database', skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis'] },
-  { category: 'DevOps & Cloud', skills: ['AWS', 'Azure', 'Docker', 'CI/CD', 'Linux'] },
-]
-
-const EXPERIENCES: { title: string; company: string; period: string }[] = [
-  { title: 'Tech Lead', company: 'Just Virtual Food', period: 'Jul 2025 - Present' },
-  { title: 'Associate Technical Lead', company: 'SafetyConnect', period: 'Nov 2023 - Jun 2025' },
-  { title: 'Full Stack Developer', company: 'SafetyConnect', period: 'March 2022 - Oct 2023' },
-  { title: 'Full Stack Developer', company: 'Innerloop Technologies Pvt. Ltd.', period: 'Feb 2021 - Feb 2022' },
-  { title: 'Full Stack Developer & Software Architect', company: 'Freelance - Embark Perfumes', period: '' },
-]
-
-const ACHIEVEMENTS: { title: string; description: string }[] = [
-  { title: 'Codathon Champion', description: "Secured 3rd place with 'Mbit' at the 'Codathon' by MIET Jammu." },
-  { title: 'Employee of the Quarter', description: 'Earned the title thrice for consistent high performance.' },
-  { title: 'Cloud Cost Optimization', description: 'Cut cloud expenses by ~65% through strategic optimizations.' },
-]
-
-function experienceYears(): number {
-  const start = new Date(2021, 1)
-  const now = new Date()
-  let years = now.getFullYear() - start.getFullYear()
-  if (now.getMonth() < start.getMonth()) years--
-  return years
-}
+const EXPERIENCES = [...EXPERIENCE, ...FREELANCE].map((role) => ({
+  title: role.title,
+  company: role.company,
+  period: role.start ? formatPeriod(role.start, role.end) : '',
+}))
 
 // Small presentational helpers ------------------------------------------------
 
@@ -74,10 +67,9 @@ const Terminal = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }, [])
 
-  // Résumé disabled until a resume PDF is available
-  // const openResume = useCallback(() => {
-  //   window.open('/resume.pdf', '_blank', 'noopener,noreferrer')
-  // }, [])
+  const openResume = useCallback(() => {
+    window.open(RESUME_PDF, '_blank', 'noopener,noreferrer')
+  }, [])
 
   // Command registry --------------------------------------------------------
   const commands = useMemo(() => {
@@ -112,7 +104,7 @@ const Terminal = () => {
       run: () => (
         <>
           <Line>Gunpreet Singh — Tech Lead & Full Stack Developer</Line>
-          <Line className="text-gray-400">{experienceYears()}+ years shipping scalable, real-time web products end to end.</Line>
+          <Line className="text-gray-400">{experienceYears()} shipping scalable, real-time web products end to end.</Line>
         </>
       ),
     }
@@ -123,7 +115,7 @@ const Terminal = () => {
         <>
           <Heading>About</Heading>
           <Line>
-            Tech Lead and Full Stack Developer with {experienceYears()}+ years building efficient, scalable,
+            Tech Lead and Full Stack Developer with {experienceYears()} building efficient, scalable,
             and user-friendly web applications — from product UIs to cloud architecture.
           </Line>
           <Line className="text-gray-400">
@@ -243,20 +235,42 @@ const Terminal = () => {
       ),
     }
 
-    // Résumé commands disabled until a resume PDF is available
-    // registry.resume = {
-    //   desc: 'Open my résumé (PDF)',
-    //   run: () => {
-    //     openResume()
-    //     return (
-    //       <Line className="text-gray-400">
-    //         Opening <Link href="/resume.pdf">/resume.pdf</Link> … (if nothing opened, it may not be added yet)
-    //       </Line>
-    //     )
-    //   },
-    // }
+    registry.resume = {
+      desc: 'Open my résumé (PDF)',
+      run: () => {
+        openResume()
+        return (
+          <Line className="text-gray-400">
+            Opening <Link href={RESUME_PDF}>{RESUME_PDF}</Link> … you can also read it at{' '}
+            <Link href="/resume">/resume</Link>.
+          </Line>
+        )
+      },
+    }
 
-    // registry.cv = { desc: 'Alias for resume', hidden: true, run: registry.resume.run }
+    registry.cv = { desc: 'Alias for resume', hidden: true, run: registry.resume.run }
+
+    registry.reference = {
+      desc: 'What people I worked for say',
+      run: () => (
+        <>
+          <Heading>References</Heading>
+          {publishedReferences().map((reference) => (
+            <React.Fragment key={reference.id}>
+              <Line className="text-gray-300">{reference.quote}</Line>
+              <Line className="text-gray-500">
+                {`— ${reference.author}, ${reference.authorTitle}, ${reference.authorCompany}`}
+              </Line>
+              <Line />
+            </React.Fragment>
+          ))}
+          <Line className="text-gray-400">
+            {'Full letters: '}
+            <Link href={REFERENCES_PATH}>{REFERENCES_PATH}</Link>
+          </Line>
+        </>
+      ),
+    }
 
     registry.ls = {
       desc: 'List sections of this site',
@@ -265,7 +279,7 @@ const Terminal = () => {
           {SECTIONS.map((s) => (
             <span key={s} className="text-blue-300">{`${s}/  `}</span>
           ))}
-          {/* resume.pdf hidden until a resume is available */}
+          <span className="text-gray-300">resume.pdf</span>
         </Line>
       ),
     }
@@ -332,7 +346,7 @@ const Terminal = () => {
     }
 
     return registry
-  }, [scrollToSection])
+  }, [scrollToSection, openResume])
 
   const commandNames = useMemo(() => Object.keys(commands), [commands])
 

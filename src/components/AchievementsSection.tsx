@@ -2,6 +2,7 @@
 
 import AchievementCard from './AchievementCard'
 import { Trophy } from 'lucide-react'
+import { ACHIEVEMENTS } from '~/utils/resume'
 
 const AchievementsSection = () => {
   return (
@@ -15,21 +16,14 @@ const AchievementsSection = () => {
           Achievements
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AchievementCard
-            title="Codathon Champion"
-            description="Secured 3rd place with 'Mbit' at the prestigious 'Codathon' by MIET Jammu, showcasing leadership and coding expertise."
-            badge="+1000 XP"
-          />
-          <AchievementCard
-            title="Employee of the Quarter"
-            description="Earned the title thrice, demonstrating unwavering commitment, superior problem-solving, and consistently high performance."
-            badge="Consistency Master"
-          />
-          <AchievementCard
-            title="Cloud Cost Optimization"
-            description="Reduced cloud expenses by 65% through strategic optimizations, highlighting exceptional resource management and cost-saving techniques."
-            badge="Efficiency Expert"
-          />
+          {ACHIEVEMENTS.map((achievement) => (
+            <AchievementCard
+              key={achievement.title}
+              title={achievement.title}
+              description={achievement.description}
+              badge={achievement.badge}
+            />
+          ))}
         </div>
       </div>
     </section>

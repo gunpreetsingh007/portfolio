@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 // Public access key from https://web3forms.com — safe to expose client-side.
 const WEB3FORMS_ACCESS_KEY = '8b4706d9-9536-4a49-80d6-79f7d93d6c49';
 
-const ContactSection = ({ experienceYears }: { experienceYears: number }) => {
+const ContactSection = ({ experience }: { experience: string }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -66,7 +66,7 @@ const ContactSection = ({ experienceYears }: { experienceYears: number }) => {
           <div className="mb-8 md:mb-0 md:w-1/2 flex">
             <NeumorphicCard className="flex-1 flex flex-col">
               <p className="text-lg mb-4">
-                Ready to embark on a new adventure? With over {experienceYears} years of experience in crafting exceptional web solutions,
+                Ready to embark on a new adventure? With {experience} of experience in crafting exceptional web solutions,
                 I&apos;m always excited to take on new challenges and collaborations. Let&apos;s team up and create something extraordinary!
               </p>
               <p className="text-lg mb-2">Email: gunpreetsingh077@gmail.com</p>

@@ -55,7 +55,14 @@ function Avatar() {
   )
 }
 
-const AboutSection = ({ experienceYears }: { experienceYears: number }) => {
+const AboutSection = ({
+  experience,
+  experienceYears,
+}: {
+  experience: string
+  /** Rounded whole years — the count-up stat animates a number. */
+  experienceYears: number
+}) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 })
 
   return (
@@ -69,7 +76,7 @@ const AboutSection = ({ experienceYears }: { experienceYears: number }) => {
           <NeumorphicCard>
             <Avatar />
             <p className="text-lg mb-6">
-              I&apos;m a Tech Lead and Full Stack Developer with over {experienceYears} years of experience in building efficient, scalable, and
+              I&apos;m a Tech Lead and Full Stack Developer with {experience} of experience in building efficient, scalable, and
               user-friendly web applications. My journey in tech has led me from crafting a wide range of websites across major categories to optimizing cloud solutions,
               always with an eye on innovation and performance.
             </p>
@@ -83,7 +90,8 @@ const AboutSection = ({ experienceYears }: { experienceYears: number }) => {
             <ul ref={ref} className="space-y-3">
               <li className="flex justify-between border-b border-gray-200 pb-3 dark:border-gray-700">
                 <span>Years of Experience</span>
-                <CountUp target={experienceYears} suffix="+" run={inView} />
+                {/* No "+" here: the figure is rounded up from 5y7m, so "6+" would overstate. */}
+                <CountUp target={experienceYears} run={inView} />
               </li>
               <li className="flex justify-between border-b border-gray-200 pb-3 dark:border-gray-700">
                 <span>Projects Completed</span>

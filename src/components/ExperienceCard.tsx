@@ -8,6 +8,7 @@ interface ExperienceCardProps {
   title: string
   company: string
   companyLink?: string
+  location?: string
   period?: string
   description: string[]
   xp: string
@@ -18,6 +19,7 @@ const ExperienceCard = ({
   title,
   company,
   companyLink,
+  location,
   period,
   description,
   xp,
@@ -52,6 +54,9 @@ const ExperienceCard = ({
           )}{' '}
           {period && `| ${period}`}
         </p>
+        {location && (
+          <p className="-mt-3 mb-4 text-sm text-gray-500 dark:text-gray-500">{location}</p>
+        )}
         <ul className="list-disc list-inside space-y-2 mb-4">
           {description.map((item, index) => (
             <li key={index}>{item}</li>
