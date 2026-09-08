@@ -118,7 +118,8 @@ export const summary = (experience = formatExperienceApprox()) =>
   'Most recently held technical leadership of the software organisation at an Austrian foodtech ' +
   'company, across three products serving 600+ restaurant partners in the DACH region. Comfortable ' +
   'from database schema to production infrastructure, with a track record of measurable impact — ' +
-  '~90% faster critical APIs and 65% lower cloud spend.'
+  '~90% faster critical APIs and 65% lower cloud spend. Works AI-first, with Claude Code and ' +
+  'Cursor part of day-to-day delivery.'
 
 // Skills ---------------------------------------------------------------------
 
@@ -140,6 +141,12 @@ export const SKILL_GROUPS: SkillGroup[] = [
   {
     category: 'DevOps & Cloud',
     skills: ['AWS', 'Azure', 'Docker', 'CI/CD', 'Linux'],
+  },
+  {
+    // Named tools rather than a vague "AI" claim: these are checkable, and this
+    // portfolio repo is itself the evidence (AGENTS.md / CLAUDE.md, agent config).
+    category: 'AI Tooling',
+    skills: ['Claude Code', 'Cursor', 'Agent workflows', 'Spec-driven prompting'],
   },
 ]
 
@@ -284,10 +291,9 @@ export const ACHIEVEMENTS: Achievement[] = [
  * reversed; the wording is identical, so swapping the file is the only change.
  * He also asked to review the claims derived from the role before they go live.
  *
- * Embark Perfumes: not published — Varsha Dalal has not been asked yet. The letter
- * is addressed "To Whom It May Concern", so it was written for circulation, but
- * that is not the same as consenting to a search-indexed page carrying her
- * company's letterhead, stamp and street address.
+ * Embark Perfumes: Varsha Dalal gave her go-ahead (Sept 2026). public/reference-embark.pdf
+ * is a scan with no text layer, so its excerpts were transcribed by eye and cannot
+ * be machine-checked against a source the way the Just Virtual Food ones were.
  */
 export type Reference = {
   id: string
@@ -334,8 +340,8 @@ export const REFERENCES: Reference[] = [
   },
   {
     id: 'embark-perfumes',
-    // Not yet published — Varsha Dalal has not been asked. See AGENTS.md.
-    published: false,
+    // Varsha Dalal gave her go-ahead (Sept 2026).
+    published: true,
     excerpts: [
       'It is our absolute pleasure and honour to recommend the services of Mr. Gunpreet Singh.',
       'During the scope of the project, Gunpreet Singh demonstrated a good work ethic and successfully completed the project within the agreed upon time. We can happily report that the work not only met my expectations, it exceeded them.',

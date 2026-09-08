@@ -171,6 +171,7 @@ export default function Resume() {
             <dl className="space-y-[2px]">
               {SKILL_GROUPS.map((group) => (
                 <div key={group.category} className="flex text-[10pt] leading-[1.38]">
+                  {/* Keep category labels short enough to fit this column on one line. */}
                   <dt className="w-[34mm] shrink-0 font-semibold text-neutral-900">
                     {group.category}
                   </dt>

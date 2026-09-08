@@ -45,9 +45,3 @@ yarn-error.log*
 /Certificate of Employment*
 /My Resume*
 /Vikas*
-
-# Varsha Dalal has not yet agreed to her recommendation letter being published.
-# Anything under public/ is served at a public URL once deployed, whether or not
-# the site links to it — so this stays local until she says yes. Remove this line
-# at the same time as setting REFERENCES['embark-perfumes'].published = true.
-/public/reference-embark.pdf

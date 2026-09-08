@@ -60,8 +60,9 @@ Still outstanding:
 - Replace `public/coding.png` (currently a generic Google image) with a proper 1200×630 OG card.
 - Confirm the city for `PROFILE.location` in `src/utils/resume.ts` (currently just "India" — recruiters filter on city).
 - Add a real impact metric to the Just Virtual Food role in `src/utils/resume.ts` (marked with a TODO) once the former CTO supplies figures.
-- **Ask Varsha Dalal (Founder, Embark Perfumes) before publishing her letter.** `REFERENCES['embark-perfumes'].published` in `src/utils/resume.ts` is `false`; `public/reference-embark.pdf` is staged and the `/reference` page renders it the moment that flips to `true`. The letter is addressed "To Whom It May Concern" so it was written to be shown around, but that is not consent to a search-indexed page carrying her company's letterhead, stamp and street address. Niklas was asked; the same courtesy applies here.
+- Confirm the Embark freelance dates. Her letter says she had worked with him "for last two years" as of Jan 2024, suggesting roughly 2022–2024, but this is unconfirmed — it is the only undated entry on the résumé.
 - The Embark letter is a **scan with no text layer** — not selectable, searchable or screen-readable, and visibly lower fidelity than the Just Virtual Food PDF.
+- Both reference letters are published with their authors' explicit permission (Sept 2026). Each is gated separately by `REFERENCES[].published`; never publish a letter without asking its author.
 
 Already done (do not re-report as pending):
 - `public/resume.pdf` — generated from `/resume`. The résumé entry points are all live now: hero CTA, palette entries, and the `resume`/`cv` terminal commands.
