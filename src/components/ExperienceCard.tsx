@@ -1,8 +1,11 @@
 'use client'
 
+import Link from 'next/link'
+import { Quote } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import NeumorphicCard from './NeumorphicCard'
+import { REFERENCES_PATH, type Reference } from '~/utils/resume'
 
 interface ExperienceCardProps {
   title: string
@@ -13,6 +16,8 @@ interface ExperienceCardProps {
   description: string[]
   xp: string
   badge: string
+  /** Published reference for this role, if its author has consented. */
+  reference?: Reference
 }
 
 const ExperienceCard = ({
@@ -24,6 +29,7 @@ const ExperienceCard = ({
   description,
   xp,
   badge,
+  reference,
 }: ExperienceCardProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -62,6 +68,22 @@ const ExperienceCard = ({
             <li key={index}>{item}</li>
           ))}
         </ul>
+        {/* The reference sits with the role it describes. Without this the page is
+            only reachable from ⌘K or the terminal, which most visitors never open. */}
+        {reference && (
+          <Link
+            href={`${REFERENCES_PATH}#${reference.id}`}
+            className="group mb-4 flex items-start gap-2 rounded-lg border border-emerald-200 bg-emerald-50/60 px-3 py-2 text-sm transition hover:border-emerald-400 dark:border-emerald-900 dark:bg-emerald-950/30 dark:hover:border-emerald-700"
+          >
+            <Quote size={15} className="mt-0.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+            <span className="text-gray-700 dark:text-gray-300">
+              &ldquo;{reference.pullQuote}&rdquo;{' '}
+              <span className="whitespace-nowrap font-medium text-emerald-700 group-hover:underline dark:text-emerald-400">
+                — {reference.author}, {reference.authorTitle} →
+              </span>
+            </span>
+          </Link>
+        )}
         <div className="flex items-center space-x-2">
           <span className="inline-block bg-gradient-to-r from-green-400 to-green-600 text-white text-xs px-2 py-1 rounded-full">
             {xp} XP

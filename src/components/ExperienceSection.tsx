@@ -2,7 +2,7 @@
 
 import { Briefcase } from 'lucide-react'
 import ExperienceCard from './ExperienceCard'
-import { EXPERIENCE, FREELANCE, formatPeriod } from '~/utils/resume'
+import { EXPERIENCE, FREELANCE, formatPeriod, referenceForRole } from '~/utils/resume'
 
 // Copy lives in ~/utils/resume so the site, the terminal and the PDF cannot drift.
 const EXPERIENCES = [...EXPERIENCE, ...FREELANCE]
@@ -27,6 +27,7 @@ const ExperienceSection = () => {
               description={experience.highlights}
               xp={experience.xp}
               badge={experience.badge}
+              reference={referenceForRole(experience)}
             />
           ))}
         </div>
