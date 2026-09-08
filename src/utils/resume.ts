@@ -118,8 +118,8 @@ export const summary = (experience = formatExperienceApprox()) =>
   'Most recently held technical leadership of the software organisation at an Austrian foodtech ' +
   'company, across three products serving 600+ restaurant partners in the DACH region. Comfortable ' +
   'from database schema to production infrastructure, with a track record of measurable impact — ' +
-  '~90% faster critical APIs and 65% lower cloud spend. Works AI-first, with Claude Code and ' +
-  'Cursor part of day-to-day delivery.'
+  '~90% faster critical APIs and 65% lower cloud spend. Works AI-first: ships LLM agent systems ' +
+  'to production, and uses Claude Code and Cursor as part of day-to-day delivery.'
 
 // Skills ---------------------------------------------------------------------
 
@@ -141,6 +141,13 @@ export const SKILL_GROUPS: SkillGroup[] = [
   {
     category: 'DevOps & Cloud',
     skills: ['AWS', 'Azure', 'Docker', 'CI/CD', 'Linux'],
+  },
+  {
+    // Deliberately separate from "AI Tooling" below. Using Claude Code is now
+    // table stakes; having shipped an agent runtime to production is not, and
+    // collapsing the two into one line hides the scarcer skill.
+    category: 'AI Engineering',
+    skills: ['LLM agent platforms', 'Tool calling', 'Context design', 'Structured output validation'],
   },
   {
     // Named tools rather than a vague "AI" claim: these are checkable, and this
@@ -187,6 +194,8 @@ export const EXPERIENCE: Role[] = [
     // workflows stay out of anything public — do not add them.
     highlights: [
       'Held technical leadership of the software organisation — architecture, code quality and technical standards across three production platforms serving 9+ virtual food brands and 600+ restaurant partners across three DACH markets.',
+      'Built the company’s LLM agent platform — a code-registry of agent definitions with a scheduler, runner and context layer — and the scheduled agents running on it for lead generation and partner outreach, with scoring and schedule logic kept pure and unit-tested.',
+      'Shipped a tool-calling AI assistant over business data, scoping its tools to the caller’s own permissions so the model could not surface records the user was not entitled to see.',
       'Owned JMS, the internal management system (TypeScript, Fastify, Prisma, PostgreSQL, React), spanning sales CRM, contracts, analytics dashboards and global search.',
       'Designed a modular backend template that became the foundation of the platform’s v2 rewrite and led the migration onto it, delivering a rebuilt sales pipeline, faster feature development, lower infrastructure costs and a more stable platform.',
       'Delivered Partnerhub, the partner-facing platform, and the backend services behind the mobile app, with e-signature contracts, multi-language localisation and product analytics.',
