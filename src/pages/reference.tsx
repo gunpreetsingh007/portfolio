@@ -11,7 +11,11 @@ import { PROFILE, REFERENCES_PATH, publishedReferences, type Reference } from '~
  */
 
 const ReferenceCard = ({ reference }: { reference: Reference }) => (
-  <figure className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+  // id is the anchor target for the résumé's per-role reference links.
+  <figure
+    id={reference.id}
+    className="scroll-mt-8 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+  >
     <Quote className="text-emerald-600 dark:text-emerald-400" size={28} aria-hidden />
     {/*
       Excerpts are NOT contiguous in the original letter, so they must not read as

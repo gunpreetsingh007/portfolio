@@ -9,8 +9,8 @@ import {
   PROFILE,
   REFERENCES_PATH,
   SKILL_GROUPS,
-  publishedReferences,
   formatPeriod,
+  referenceForRole,
   summary,
   type Role,
 } from '~/utils/resume'
@@ -77,12 +77,39 @@ const RoleBlock = ({ role }: { role: Role }) => (
         </li>
       ))}
     </ul>
+    <RoleReference role={role} />
   </article>
 )
 
-export default function Resume() {
-  const references = publishedReferences()
+/**
+ * Prints the reference beneath the role it describes, rather than in a section at
+ * the foot of the page. It sits in the reader's path while they are looking at
+ * that job, so it reads as evidence for the work above it — and it is the only
+ * claim on the page a stranger can independently verify.
+ */
+const RoleReference = ({ role }: { role: Role }) => {
+  const reference = referenceForRole(role)
+  if (!reference) return null
 
+  return (
+    <p className="mt-[3px] pl-[4.2mm] text-[9.5pt] leading-[1.35] text-neutral-600">
+      {'Written reference from '}
+      <span className="font-semibold text-neutral-900">
+        {reference.author}, {reference.authorTitle}
+      </span>
+      {' — '}
+      <a
+        href={`${PROFILE.siteUrl}${REFERENCES_PATH}#${reference.id}`}
+        className="font-semibold text-neutral-900 no-underline"
+      >
+        {PROFILE.site}
+        {REFERENCES_PATH}
+      </a>
+    </p>
+  )
+}
+
+export default function Resume() {
   // href of undefined renders as plain text (location has nowhere to point).
   const contactLine: { label: string; href?: string }[] = [
     { label: PROFILE.email, href: `mailto:${PROFILE.email}` },
@@ -141,15 +168,21 @@ export default function Resume() {
             </h1>
             <p className="text-[11.5pt] font-medium text-neutral-700">{PROFILE.title}</p>
             <p className="mt-1.5 text-[9.5pt] leading-relaxed text-neutral-700">
+              {/* whitespace-nowrap so a line breaks between contact items, never
+                  inside a URL — otherwise a handle splits at its hyphen and reads
+                  as two broken addresses. */}
               {contactLine.map((item, i) => (
                 <span key={item.label}>
                   {i > 0 && <span className="mx-1.5 text-neutral-400">·</span>}
                   {item.href ? (
-                    <a href={item.href} className="text-neutral-700 no-underline">
+                    <a
+                      href={item.href}
+                      className="whitespace-nowrap text-neutral-700 no-underline"
+                    >
                       {item.label}
                     </a>
                   ) : (
-                    item.label
+                    <span className="whitespace-nowrap">{item.label}</span>
                   )}
                 </span>
               ))}
@@ -233,35 +266,8 @@ export default function Resume() {
             </ul>
           </section>
 
-          {/* Lists only letters whose author has consented to publication. */}
-          {references.length > 0 && (
-            <section className="mt-4 break-inside-avoid">
-              <SectionTitle>{references.length > 1 ? 'References' : 'Reference'}</SectionTitle>
-              <Rule />
-              <p className="text-[10pt] leading-[1.38] text-neutral-800">
-                {'Written '}
-                {references.length > 1 ? 'references' : 'reference'}
-                {' from '}
-                {references.map((reference, i) => (
-                  <span key={reference.id}>
-                    {i > 0 && (i === references.length - 1 ? ' and ' : ', ')}
-                    {reference.author} ({reference.authorTitle}, {reference.authorCompany})
-                  </span>
-                ))}
-                {' — read '}
-                {references.length > 1 ? 'them' : 'it'}
-                {' at '}
-                <a
-                  href={`${PROFILE.siteUrl}${REFERENCES_PATH}`}
-                  className="font-semibold text-neutral-900 no-underline"
-                >
-                  {PROFILE.site}
-                  {REFERENCES_PATH}
-                </a>
-                .
-              </p>
-            </section>
-          )}
+          {/* No References section here on purpose — each reference is printed
+              beneath the role it describes, by RoleReference. */}
         </main>
       </div>
     </>

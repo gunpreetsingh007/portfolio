@@ -162,6 +162,12 @@ export type Role = {
   end?: string
   /** Shared bullets — these appear on the site AND in the PDF. Keep them tight. */
   highlights: string[]
+  /**
+   * Links this role to a REFERENCES entry. The résumé prints the reference
+   * beneath the role it describes, where it reads as evidence for that job
+   * rather than a footnote at the end of the page.
+   */
+  referenceId?: string
   /** Site-only flourish. */
   xp: string
   badge: string
@@ -175,6 +181,7 @@ export const EXPERIENCE: Role[] = [
     location: 'Vienna, Austria (Remote)',
     start: '2025-07',
     end: '2026-08',
+    referenceId: 'just-virtual-food',
     // Figures below were supplied and cleared by the CTO (Sept 2026). He asked that
     // order volume, user volume, revenue, commissions and detailed internal
     // workflows stay out of anything public — do not add them.
@@ -239,6 +246,7 @@ export const FREELANCE: Role[] = [
     // letter cites. Previously pointed at embark.gunpreet.in / embarkperfumes.in,
     // neither of which is the client's canonical address.
     companyLink: 'https://www.embarkperfumes.com',
+    referenceId: 'embark-perfumes',
     highlights: [
       'Designed and built a bespoke e-commerce platform for an established Indian perfume brand, including an admin panel for product and inventory management.',
       'Implemented SEO and responsive design, improving visibility and cross-device accessibility.',
@@ -361,5 +369,9 @@ export const REFERENCES: Reference[] = [
 ]
 
 export const publishedReferences = () => REFERENCES.filter((r) => r.published)
+
+/** The published reference for a role, if its author has consented. */
+export const referenceForRole = (role: Role) =>
+  role.referenceId ? publishedReferences().find((r) => r.id === role.referenceId) : undefined
 
 export const RESUME_PDF = '/resume.pdf'
