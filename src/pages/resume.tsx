@@ -135,14 +135,44 @@ export default function Resume() {
       {/* Print rules live here rather than in Tailwind so page geometry is explicit. */}
       <style>{`
         @page { size: A4; margin: 11mm 13mm; }
+
+        /*
+          The résumé deliberately does NOT use the site's Inter webfont.
+
+          Two reasons, both measured:
+          1. Chrome embeds a next/font webfont into print output as Type 3 glyphs
+             (little drawing programs). Text still extracts, but ATS parsing
+             libraries handle Type 3 inconsistently, and poppler reports bad glyph
+             bounding boxes. A local font embeds as CID TrueType, which is standard.
+          2. Inter renders ~10% narrower than a system UI font at the same point
+             size, so the page reads noticeably smaller than its 10pt suggests.
+
+          This is a printed document, not a page of the site — it does not need the
+          brand typeface.
+        */
+        .resume-sheet, .resume-sheet * {
+          font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+        }
         @media print {
           html, body { background: #fff !important; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          .resume-sheet { box-shadow: none !important; margin: 0 !important; width: auto !important; padding: 0 !important; }
+          /*
+            Every ancestor must collapse to the printable width. If anything in the
+            chain stays 210mm wide, Chrome shrinks the whole page to fit — which is
+            invisible in the output (the text still spans the full column) but
+            renders every glyph ~11% smaller than its specified point size.
+          */
+          html, body, .resume-page, .resume-sheet {
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: none !important;
+          }
+          .resume-page { min-height: 0 !important; padding: 0 !important; }
+          .resume-sheet { box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
         }
       `}</style>
 
-      <div className="min-h-screen bg-neutral-200 py-8 print:bg-white print:py-0">
+      <div className="resume-page min-h-screen bg-neutral-200 py-8 print:bg-white print:py-0">
         {/* Screen-only controls */}
         <div className="mx-auto mb-6 flex max-w-[210mm] items-center justify-between gap-4 px-4 print:hidden">
           <Link
@@ -168,12 +198,15 @@ export default function Resume() {
             </h1>
             <p className="text-[11.5pt] font-medium text-neutral-700">{PROFILE.title}</p>
             <p className="mt-1.5 text-[9.5pt] leading-relaxed text-neutral-700">
-              {/* whitespace-nowrap so a line breaks between contact items, never
-                  inside a URL — otherwise a handle splits at its hyphen and reads
-                  as two broken addresses. */}
+              {/*
+                Each item is nowrap so a URL never splits at its hyphen — but the
+                separators MUST carry real spaces. Without them the whole line is a
+                single unbreakable run, its min-content width exceeds the printable
+                area, and Chrome silently scales the entire page down to fit.
+              */}
               {contactLine.map((item, i) => (
                 <span key={item.label}>
-                  {i > 0 && <span className="mx-1.5 text-neutral-400">·</span>}
+                  {i > 0 && <span className="text-neutral-400"> · </span>}
                   {item.href ? (
                     <a
                       href={item.href}
