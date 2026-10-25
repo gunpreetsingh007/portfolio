@@ -58,13 +58,14 @@ _(none — all current pending work is done)_
 ## ASSETS
 Still outstanding:
 - Replace `public/coding.png` (currently a generic Google image) with a proper 1200×630 OG card.
-- Confirm the city for `PROFILE.location` in `src/utils/resume.ts` (currently just "India" — recruiters filter on city).
-- Add a real impact metric to the Just Virtual Food role in `src/utils/resume.ts` (marked with a TODO) once the former CTO supplies figures.
-- Confirm the Embark freelance dates. Her letter says she had worked with him "for last two years" as of Jan 2024, suggesting roughly 2022–2024, but this is unconfirmed — it is the only undated entry on the résumé.
 - The Embark letter is a **scan with no text layer** — not selectable, searchable or screen-readable, and visibly lower fidelity than the Just Virtual Food PDF.
 - Both reference letters are published with their authors' explicit permission (Sept 2026). Each is gated separately by `REFERENCES[].published`; never publish a letter without asking its author.
 
 Already done (do not re-report as pending):
+- **Profile city** — `PROFILE.location` is "Jammu, India" (Sept 2026).
+- **Just Virtual Food figures** — 9+ brands and 600+ restaurant partners across three DACH markets, supplied and cleared by the former CTO (Sept 2026).
+- **Embark dates** — Feb 2022 to Jan 2024, taken from Varsha Dalal's letter ("for last two years", dated 15 Jan 2024) and confirmed by Gunpreet (Oct 2026).
+- **Education** — corrected to "B.E. Computer Science" from the degree certificate (it previously said "Computer Engineering"). Studied at MIET Jammu; the degree is awarded by the University of Jammu, so both are named.
 - `public/resume.pdf` — generated from `/resume`. The résumé entry points are all live now: hero CTA, palette entries, and the `resume`/`cv` terminal commands.
 - `public/avatar.png` — transparent-cutout portrait used in the About avatar (composited over a gradient + glow via CSS). Falls back to "GS" initials only if the image fails to load. (Previously `headshot.jpg`. `avatar-old.png` is the superseded version.) Generated with `scripts/make-linkedin-avatar.cjs` — a local build-time tool, not part of the exported site.
 - **Web3Forms access key** — set in `src/components/ContactSection.tsx`. It is a public client-side key by design; not a secret. A ready-made, on-brand card generator exists at repo root: open `og-card.html` in Chrome → DevTools → right-click the `.card` element → "Capture node screenshot" → save as `public/coding.png`. (`og-card.html` is a build-time tool; it is not part of the exported site.)

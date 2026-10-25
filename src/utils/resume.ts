@@ -210,7 +210,7 @@ export const EXPERIENCE: Role[] = [
     start: '2023-11',
     end: '2025-05',
     highlights: [
-      'Led development of ProcessSafety, a template builder that digitised paper-based workflows such as permit to work and incident management.',
+      'Led development of ProcessSafety from scratch, a template builder that digitised paper-based workflows such as permit to work and incident management.',
       'Managed and code-reviewed a team of 5 developers, owning quality standards and the full delivery lifecycle.',
       'Shipped new modules consistently on schedule across the product.',
     ],
@@ -255,6 +255,11 @@ export const FREELANCE: Role[] = [
     // letter cites. Previously pointed at embark.gunpreet.in / embarkperfumes.in,
     // neither of which is the client's canonical address.
     companyLink: 'https://www.embarkperfumes.com',
+    // Dated from Varsha Dalal's letter (15 Jan 2024): "known and worked with Gunpreet
+    // Singh for last two years". End date is the letter's date; the letter says the
+    // project was completed by then. Confirmed with Gunpreet, Oct 2026.
+    start: '2022-02',
+    end: '2024-01',
     referenceId: 'embark-perfumes',
     highlights: [
       'Designed and built a bespoke e-commerce platform for an established Indian perfume brand, including an admin panel for product and inventory management.',
@@ -269,8 +274,8 @@ export const FREELANCE: Role[] = [
 
 export const EDUCATION = [
   {
-    degree: 'B.E. Computer Engineering',
-    institution: 'Jammu University',
+    degree: 'B.E. Computer Science',
+    institution: 'Model Institute of Engineering & Technology, University of Jammu',
     period: '2017 – 2021',
   },
 ] as const
