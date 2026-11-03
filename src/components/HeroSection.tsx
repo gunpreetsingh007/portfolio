@@ -4,12 +4,14 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown, ArrowRight, Github, Linkedin, FileText } from 'lucide-react'
 
+// Completes "I help founders build …". Founder-facing on purpose: the site and
+// LinkedIn both position Gunpreet for early-stage product work, not job hunting.
 const ROLES = [
-  'scalable APIs',
-  'real-time apps',
-  'cloud architecture',
-  'developer tools',
-  'delightful UX',
+  'their first product',
+  'MVPs that can scale',
+  'AI-powered products',
+  'web and mobile apps',
+  'solid cloud backends',
 ]
 
 const HeroSection = ({ experience }: { experience: string }) => {
@@ -55,7 +57,9 @@ const HeroSection = ({ experience }: { experience: string }) => {
     <section
       ref={sectionRef}
       onMouseMove={handleMove}
-      className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-gray-950"
+      // min-h + padding, not h-screen: on a 375×812 phone the content is taller than
+      // the screen, and a fixed height pushed the badge under the fixed header.
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gray-950 py-24"
     >
       {/* Lightweight animated gradient background (replaces the heavy 3D canvas) */}
       <div className="pointer-events-none absolute inset-0">
@@ -96,7 +100,7 @@ const HeroSection = ({ experience }: { experience: string }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Tech Lead & Full Stack Developer · {experience}
+          Tech Lead & Full Stack Engineer · {experience}
         </motion.p>
 
         <motion.h1
@@ -109,12 +113,14 @@ const HeroSection = ({ experience }: { experience: string }) => {
         </motion.h1>
 
         <motion.div
-          className="mb-6 text-2xl font-medium text-gray-200 md:text-3xl"
+          // Every phrase wraps to two lines on phones; reserving both stops the
+          // content below jumping each time the rotator types a phrase.
+          className="mb-6 min-h-[4rem] text-2xl font-medium text-gray-200 md:min-h-0 md:text-3xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          I build{' '}
+          I help founders build{' '}
           <span className="text-emerald-400">{text}</span>
           <span className="ml-0.5 inline-block h-6 w-0.5 animate-pulse bg-emerald-400 align-middle md:h-7" />
         </motion.div>
@@ -125,9 +131,9 @@ const HeroSection = ({ experience }: { experience: string }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          Full-stack engineer shipping products end to end — cutting API latency by
-          ~90%, slashing cloud costs by ~65%, and turning complex ideas into
-          reliable, real-time experiences.
+          Technical lead for early-stage startups. With a product partner and a
+          marketing partner, I take founders from an idea to a first version real
+          users can use, built properly so it does not have to be thrown away.
         </motion.p>
 
         <motion.div
@@ -137,11 +143,17 @@ const HeroSection = ({ experience }: { experience: string }) => {
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           <button
-            onClick={() => handleScrollTo('projects')}
+            onClick={() => handleScrollTo('contact')}
             className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-600 px-7 py-3 font-semibold text-white transition hover:from-emerald-500 hover:to-emerald-700"
           >
-            View My Work
+            Let&apos;s Talk
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </button>
+          <button
+            onClick={() => handleScrollTo('projects')}
+            className="flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3 font-semibold text-white backdrop-blur-sm transition hover:bg-white/10"
+          >
+            View My Work
           </button>
           <a
             href="/resume.pdf"

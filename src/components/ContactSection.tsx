@@ -66,11 +66,11 @@ const ContactSection = ({ experience }: { experience: string }) => {
           <div className="mb-8 md:mb-0 md:w-1/2 flex">
             <NeumorphicCard className="flex-1 flex flex-col">
               <p className="text-lg mb-4">
-                Ready to embark on a new adventure? With {experience} of experience in crafting exceptional web solutions,
-                I&apos;m always excited to take on new challenges and collaborations. Let&apos;s team up and create something extraordinary!
+                Have an idea, or an early product that needs a team? Tell me what you are building and where you are
+                stuck. With {experience} of experience, I can tell you what it will take to reach a first version.
               </p>
               <p className="text-lg mb-2">Email: gunpreetsingh077@gmail.com</p>
-              <p className="text-lg">Phone: +91 7780903638</p>
+              <p className="text-lg">Phone: +91 77809 03638</p>
             </NeumorphicCard>
           </div>
           <div className="w-full md:w-1/2 max-w-md flex">

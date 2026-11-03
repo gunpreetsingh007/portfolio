@@ -15,8 +15,10 @@ Check:
    `lastmod` is not stale relative to the latest content change, `changefreq`
    is sane.
 4. `public/robots.txt` — points at the sitemap, blocks nothing that matters.
-5. `public/coding.png` is the OG card at 1200×630. If it is still the generic
-   placeholder, say so and point at `og-card.html` as the generator.
+5. `public/og-card.jpg` is the OG card, exported from `og-card.html` at exactly
+   1200×630 — the size `index.tsx` declares. Measure the file; do not assume.
+   JSON-LD `image` and the sitemap's `<image:image>` entries point at
+   `public/gunpreet-singh.jpg`.
 6. `src/pages/404.tsx` has a sensible title and a way back home.
 
 Report findings as a short list, most impactful first. Apply fixes only for the

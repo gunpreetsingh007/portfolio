@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>OG Card — export to public/coding.png (1200×630)</title>
+<title>OG Card — export to public/og-card.jpg (1200×630)</title>
 <!--
-  HOW TO EXPORT TO public/coding.png:
-  1. Open this file in Chrome.
-  2. Open DevTools (F12) → run device toolbar OFF, zoom 100%.
-  3. Right-click the card → Inspect → in Elements, right-click the
-     <div class="card"> element → "Capture node screenshot".
-  4. Save the PNG as public/coding.png (it will be exactly 1200×630).
-  (Alternatively, screenshot the card region manually.)
+  HOW TO EXPORT TO public/og-card.jpg:
+  1. Screenshot this page with headless Chrome at exactly the card size:
+       chrome --headless --hide-scrollbars --window-size=1200,630
+              --virtual-time-budget=8000 --allow-file-access-from-files
+              --screenshot=og-card.png file:///<repo>/og-card.html
+     (--virtual-time-budget gives Google Fonts and the photo time to load.)
+  2. Convert the PNG to JPEG (~quality 88, ~95 KB) and save it as
+     public/og-card.jpg. As a PNG the gradients make it ~400 KB.
+  index.tsx declares og:image:width/height as 1200×630, so the export size
+  must not change without updating those tags.
 -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
@@ -69,6 +72,16 @@
   .role { font-size: 40px; font-weight: 600; color: #e5e7eb; margin-top: 18px; }
   .role .accent { color: #34d399; }
 
+  /* The face on the share card is deliberate: it is what lets search and social
+     previews pair the name with a person, not just with text. */
+  .photo {
+    position: absolute; right: 80px; top: 150px;
+    width: 260px; height: 260px; border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255,255,255,0.9);
+    box-shadow: 0 0 0 10px rgba(16,185,129,0.18), 0 20px 60px rgba(0,0,0,0.5);
+  }
+
   .bottom { position: relative; display: flex; gap: 40px; align-items: center; }
   .metric { display: flex; flex-direction: column; }
   .metric .num { font-size: 34px; font-weight: 700; color: #fff; }
@@ -85,6 +98,7 @@
   <div class="card">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
+    <img class="photo" src="public/gunpreet-singh.jpg" alt="Gunpreet Singh" />
 
     <div class="top">
       <div class="badge">GS</div>
@@ -92,9 +106,9 @@
     </div>
 
     <div class="main">
-      <span class="eyebrow">Tech Lead &amp; Full Stack Developer</span>
+      <span class="eyebrow">Tech Lead &amp; Full Stack Engineer</span>
       <div class="name">Gunpreet Singh</div>
-      <div class="role">I build <span class="accent">scalable, real-time products</span></div>
+      <div class="role">I help founders build <span class="accent">their first product</span></div>
     </div>
 
     <div class="bottom">
@@ -109,8 +123,8 @@
       </div>
       <div class="divider"></div>
       <div class="metric">
-        <span class="num">Full-stack</span>
-        <span class="lbl">ownership</span>
+        <span class="num">Idea → launch</span>
+        <span class="lbl">product, tech, marketing</span>
       </div>
       <span class="kbd">⌘K to explore</span>
     </div>

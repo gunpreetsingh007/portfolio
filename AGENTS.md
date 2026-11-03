@@ -1,9 +1,13 @@
 # Gunpreet Portfolio — Agent Context
 
-Personal portfolio for **Gunpreet Singh** (Tech Lead & Full Stack Developer).
-Live domain: **https://www.gunpreet.in**. Audience: CTOs, HRs, and IT recruiters —
-the site must read as the work of a confident senior engineer (polished, fast,
-tasteful), with a light thread of playful "gamification" (~20%, not more).
+Personal portfolio for **Gunpreet Singh** (Tech Lead & Full Stack Engineer).
+Live domain: **https://www.gunpreet.in**. Audience: **early-stage founders** looking
+for someone to build and launch their first product (since Nov 2026 — matches the
+LinkedIn repositioning; he is not looking for a full-time job). Recruiters and CTOs
+still read it, so it must read as the work of a confident senior engineer (polished,
+fast, tasteful), with a light thread of playful "gamification" (~20%, not more).
+He works with a product partner and a marketing partner — **never name them** on
+the site; describe them only as "a senior product manager" and "a marketing leader".
 
 ## Stack
 - **Next.js 15** (Pages Router) + **TypeScript**, **Tailwind CSS**, **framer-motion**, **lucide-react** icons.
@@ -30,7 +34,7 @@ Do NOT re-add Prisma, tRPC, three.js, react-slick, or env validation.
 - `src/utils/resume.ts` — **single source of truth** for profile, summary, skills, experience, freelance, education, achievements and the reference block. Feeds the site sections, the terminal and the `/resume` page. Edit copy here, never in a component.
 - `src/pages/resume.tsx` — print-first, single-column résumé page. `npm run build && npm run resume:pdf` renders it to `public/resume.pdf` via headless Chrome/Edge (`scripts/build-resume.cjs`). Stop `npm run dev` before regenerating.
 - `src/pages/index.tsx` — page composition + full SEO `<Head>` (Twitter cards, canonical, JSON-LD Person schema, absolute og:image).
-- `src/components/HeroSection.tsx` — gradient hero, mouse spotlight, typing role rotator. (Résumé CTA is commented out until `public/resume.pdf` exists.)
+- `src/components/HeroSection.tsx` — gradient hero, mouse spotlight, typing rotator completing "I help founders build …". CTAs: Let's Talk (→ contact), View My Work, Résumé.
 - `src/components/CommandPalette.tsx` — ⌘K / Ctrl+K palette (search, ↑↓ nav, theme toggle, links). Mounted in `Layout.tsx`.
 - `src/components/AboutSection.tsx` — count-up stats + headshot avatar with "GS" initials fallback.
 - `src/components/SkillsSection.tsx` — grouped skill tag clusters (NO percentage bars — intentional).
@@ -57,7 +61,6 @@ _(none — all current pending work is done)_
 
 ## ASSETS
 Still outstanding:
-- Replace `public/coding.png` (currently a generic Google image) with a proper 1200×630 OG card.
 - The Embark letter is a **scan with no text layer** — not selectable, searchable or screen-readable, and visibly lower fidelity than the Just Virtual Food PDF.
 - Both reference letters are published with their authors' explicit permission (Sept 2026). Each is gated separately by `REFERENCES[].published`; never publish a letter without asking its author.
 
@@ -67,8 +70,9 @@ Already done (do not re-report as pending):
 - **Embark dates** — Feb 2022 to Jan 2024, taken from Varsha Dalal's letter ("for last two years", dated 15 Jan 2024) and confirmed by Gunpreet (Oct 2026).
 - **Education** — corrected to "B.E. Computer Science" from the degree certificate (it previously said "Computer Engineering"). Studied at MIET Jammu; the degree is awarded by the University of Jammu, so both are named.
 - `public/resume.pdf` — generated from `/resume`. The résumé entry points are all live now: hero CTA, palette entries, and the `resume`/`cv` terminal commands.
-- `public/avatar.png` — transparent-cutout portrait used in the About avatar (composited over a gradient + glow via CSS). Falls back to "GS" initials only if the image fails to load. (Previously `headshot.jpg`. `avatar-old.png` is the superseded version.) Generated with `scripts/make-linkedin-avatar.cjs` — a local build-time tool, not part of the exported site.
-- **Web3Forms access key** — set in `src/components/ContactSection.tsx`. It is a public client-side key by design; not a secret. A ready-made, on-brand card generator exists at repo root: open `og-card.html` in Chrome → DevTools → right-click the `.card` element → "Capture node screenshot" → save as `public/coding.png`. (`og-card.html` is a build-time tool; it is not part of the exported site.)
+- `public/gunpreet-singh.jpg` — the About avatar photo (Nov 2026). 800×800, ~100 KB, square crop of a real photo, no EXIF/GPS. The descriptive file name and the JSON-LD `image` are what let Google Images pair the name with the face. Falls back to "GS" initials if it fails to load. `avatar.png` / `avatar-old.png` are the superseded cutouts; `avatar.png` is still the input to `scripts/make-linkedin-avatar.cjs`.
+- `public/og-card.jpg` — the OG/Twitter card, exported from `og-card.html` (instructions inside it) at exactly 1200×630, the size `index.tsx` declares. Includes the photo. Replaced `coding.png`, which was 1980×1040 while the tags claimed 1200×630.
+- **Web3Forms access key** — set in `src/components/ContactSection.tsx`. It is a public client-side key by design; not a secret. (`og-card.html` is a build-time tool for the OG card; it is not part of the exported site.)
 
 ## Build / deploy
 - Dev: `npm run dev` · Build (static): `npm run build` → outputs `./out`.

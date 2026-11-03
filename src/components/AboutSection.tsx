@@ -35,7 +35,7 @@ function Avatar() {
         className="absolute -inset-1.5 rounded-full bg-gradient-to-br from-emerald-400/50 to-blue-600/50 blur-md"
         aria-hidden
       />
-      {/* avatar.png already has the gradient backdrop baked in; the bg here is just a fallback for the "GS" state */}
+      {/* The gradient only shows in the "GS" fallback state; the photo covers it otherwise. */}
       <div className="relative h-full w-full overflow-hidden rounded-full bg-gradient-to-br from-emerald-400 via-teal-500 to-blue-600 shadow-xl ring-4 ring-white dark:ring-gray-800">
         {failed ? (
           <div className="flex h-full w-full items-center justify-center text-3xl font-bold text-white">
@@ -44,7 +44,7 @@ function Avatar() {
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src="/avatar.png"
+            src="/gunpreet-singh.jpg"
             alt="Gunpreet Singh"
             onError={() => setFailed(true)}
             className="absolute inset-0 h-full w-full object-cover object-center"
@@ -76,13 +76,18 @@ const AboutSection = ({
           <NeumorphicCard>
             <Avatar />
             <p className="text-lg mb-6">
-              I&apos;m a Tech Lead and Full Stack Developer with {experience} of experience in building efficient, scalable, and
-              user-friendly web applications. My journey in tech has led me from crafting a wide range of websites across major categories to optimizing cloud solutions,
-              always with an eye on innovation and performance.
+              I help early-stage founders turn an idea into a real product, and get it in front of their first users.
+              I&apos;m a Tech Lead and Full Stack Engineer with {experience} of experience building production software.
+            </p>
+            <p className="text-lg mb-6">
+              Most recently I was Technical Lead at Just Virtual Food, a foodtech company in Vienna, where I owned the
+              architecture of three platforms used by 600+ restaurant partners across Austria, Germany and Switzerland.
+              Before that, at SafetyConnect, I led ProcessSafety from scratch and cut API response times by about 90%.
             </p>
             <p className="text-lg">
-              I approach each project like a new quest, ready to overcome challenges and unlock achievements. My expertise spans across
-              modern web technologies, cloud platforms, and best practices in software development.
+              Code is only one part of an early product, so I work with two partners: a senior product manager and a
+              marketing leader. Together we cover product, tech and marketing, from the first version to launch. I approach
+              each project like a new quest: understand the problem, build it properly, ship it.
             </p>
           </NeumorphicCard>
           <NeumorphicCard>

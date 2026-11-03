@@ -103,8 +103,8 @@ const Terminal = () => {
       desc: 'A quick one-liner about me',
       run: () => (
         <>
-          <Line>Gunpreet Singh — Tech Lead & Full Stack Developer</Line>
-          <Line className="text-gray-400">{experienceYears()} shipping scalable, real-time web products end to end.</Line>
+          <Line>Gunpreet Singh — Tech Lead & Full Stack Engineer</Line>
+          <Line className="text-gray-400">{experienceYears()} of production software. Now helping founders build their first product.</Line>
         </>
       ),
     }
@@ -115,8 +115,8 @@ const Terminal = () => {
         <>
           <Heading>About</Heading>
           <Line>
-            Tech Lead and Full Stack Developer with {experienceYears()} building efficient, scalable,
-            and user-friendly web applications — from product UIs to cloud architecture.
+            Tech Lead and Full Stack Engineer with {experienceYears()} building production software. I help
+            early-stage founders turn an idea into a real product, with a product partner and a marketing partner.
           </Line>
           <Line className="text-gray-400">
             I treat every project like a new quest: overcome the challenge, unlock the achievement, ship it fast.
