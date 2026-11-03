@@ -31,7 +31,10 @@ const ProjectCard = ({ title, description, link, badge, image, keyPoints }: Proj
         </div>
         <div className="p-6 flex flex-col flex-grow">
           <h3 className="text-2xl font-semibold mb-4">{title}</h3>
-          <p className="text-gray-600 dark:text-gray-400 flex-grow mb-4">{description}</p>
+          {/* No flex-grow here: the grid stretches every card to the tallest one, and a
+              growing paragraph pushed the bullets away from it. mt-auto on the footer
+              row takes up the spare height instead. */}
+          <p className="text-gray-600 dark:text-gray-400 mb-4">{description}</p>
           <ul className="text-gray-600 dark:text-gray-400 list-disc list-inside mb-4 ml-4">
             {keyPoints.map((point, index) => (
               <li key={index}>{point}</li>
