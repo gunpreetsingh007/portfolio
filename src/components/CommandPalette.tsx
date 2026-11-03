@@ -48,6 +48,7 @@ const CommandPalette = ({ isDarkMode, toggleDarkMode }: CommandPaletteProps) => 
 
   const commands = useMemo<Command[]>(() => [
     { id: 'about', label: 'Go to About', hint: 'Section', icon: <User size={16} />, run: () => goTo('about') },
+    { id: 'references', label: 'Go to References', hint: 'Section', icon: <Quote size={16} />, keywords: 'recommendation testimonial letters', run: () => goTo('references') },
     { id: 'skills', label: 'Go to Skills', hint: 'Section', icon: <Code size={16} />, run: () => goTo('skills') },
     { id: 'experience', label: 'Go to Experience', hint: 'Section', icon: <Briefcase size={16} />, run: () => goTo('experience') },
     { id: 'projects', label: 'Go to Projects', hint: 'Section', icon: <Star size={16} />, run: () => goTo('projects') },
@@ -56,7 +57,7 @@ const CommandPalette = ({ isDarkMode, toggleDarkMode }: CommandPaletteProps) => 
     { id: 'contact', label: 'Go to Contact', hint: 'Section', icon: <Send size={16} />, run: () => goTo('contact') },
     { id: 'resume', label: 'Download Résumé', hint: 'PDF', icon: <FileText size={16} />, keywords: 'cv pdf', run: () => openLink('/resume.pdf') },
     { id: 'resume-page', label: 'View Résumé in browser', hint: 'Page', icon: <FileText size={16} />, keywords: 'cv read online', run: () => { close(); window.location.href = '/resume' } },
-    { id: 'reference', label: 'Read my Reference Letter', hint: 'Page', icon: <Quote size={16} />, keywords: 'recommendation testimonial cto certificate', run: () => { close(); window.location.href = '/reference' } },
+    { id: 'reference', label: 'Read the full Reference Letters', hint: 'Page', icon: <Quote size={16} />, keywords: 'recommendation testimonial cto certificate', run: () => { close(); window.location.href = '/reference' } },
     { id: 'theme', label: isDarkMode ? 'Switch to Light mode' : 'Switch to Dark mode', hint: 'Theme', icon: isDarkMode ? <Sun size={16} /> : <Moon size={16} />, keywords: 'dark light toggle', run: () => { toggleDarkMode(); close() } },
     { id: 'github', label: 'Open GitHub', hint: 'Link', icon: <Github size={16} />, keywords: 'code repo', run: () => openLink('https://github.com/gunpreetsingh007') },
     { id: 'linkedin', label: 'Open LinkedIn', hint: 'Link', icon: <Linkedin size={16} />, run: () => openLink('https://www.linkedin.com/in/gunpreet-singh-887006159/') },

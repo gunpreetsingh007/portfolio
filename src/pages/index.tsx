@@ -9,6 +9,7 @@ import ContactSection from '~/components/ContactSection'
 import Footer from '~/components/Footer'
 import Head from 'next/head'
 import AboutSection from '~/components/AboutSection'
+import ReferencesSection from '~/components/ReferencesSection'
 import { experienceYearsRounded, formatExperienceApprox } from '~/utils/resume'
 import { useExperience } from '~/utils/useExperience'
 
@@ -106,6 +107,7 @@ export default function Home({
         <main>
           <HeroSection experience={experience}/>
           <AboutSection experience={experience} experienceYears={experienceYears}/>
+          <ReferencesSection />
           <SkillsSection />
           <ExperienceSection />
           <ProjectsSection />

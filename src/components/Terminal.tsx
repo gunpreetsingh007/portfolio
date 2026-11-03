@@ -29,7 +29,7 @@ const PHONE = PROFILE.phone
 const GITHUB = PROFILE.github
 const LINKEDIN = PROFILE.linkedin
 
-const SECTIONS = ['about', 'skills', 'experience', 'projects', 'achievements', 'terminal', 'contact']
+const SECTIONS = ['about', 'references', 'skills', 'experience', 'projects', 'achievements', 'terminal', 'contact']
 
 const EXPERIENCES = [...EXPERIENCE, ...FREELANCE].map((role) => ({
   title: role.title,

@@ -14,6 +14,13 @@
     --accent-foreground: 222.2 47.4% 11.2%;
   }
 
+  /* The header is fixed (64px on phones, 96px when the name wraps on laptops),
+     so scrollIntoView landed every section's top under it and clipped the
+     heading. The margin applies to nav, ⌘K and terminal `goto` alike. */
+  section[id] {
+    scroll-margin-top: 4rem;
+  }
+
   .dark {
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;

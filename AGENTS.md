@@ -37,6 +37,7 @@ Do NOT re-add Prisma, tRPC, three.js, react-slick, or env validation.
 - `src/components/HeroSection.tsx` — gradient hero, mouse spotlight, typing rotator completing "I help founders build …". CTAs: Let's Talk (→ contact), View My Work, Résumé.
 - `src/components/CommandPalette.tsx` — ⌘K / Ctrl+K palette (search, ↑↓ nav, theme toggle, links). Mounted in `Layout.tsx`.
 - `src/components/AboutSection.tsx` — count-up stats + headshot avatar with "GS" initials fallback.
+- `src/components/ReferencesSection.tsx` — the two reference letters as quote cards, straight after About (Nov 2026), each linking to its letter on `/reference`. Reads `publishedReferences()`, so an unconsented letter never shows. "References" replaced "Terminal" in the header menu; the terminal is still on the page and in ⌘K.
 - `src/components/SkillsSection.tsx` — grouped skill tag clusters (NO percentage bars — intentional).
 - `src/components/ProjectsSection.tsx` + `ProjectCard.tsx` — responsive grid. Project data in `src/utils/constants.ts`.
 - `src/components/ContactSection.tsx` — Web3Forms form.

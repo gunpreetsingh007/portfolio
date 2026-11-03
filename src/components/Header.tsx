@@ -67,11 +67,11 @@ const Header = ({ isDarkMode, toggleDarkMode }: HeaderProps) => {
             >
               {[
                 { label: 'About', id: 'about' },
+                { label: 'References', id: 'references' },
                 { label: 'Skills', id: 'skills' },
                 { label: 'Experience', id: 'experience' },
                 { label: 'Projects', id: 'projects' },
                 { label: 'Achievements', id: 'achievements' },
-                { label: 'Terminal', id: 'terminal' },
                 { label: 'Contact', id: 'contact' },
               ].map(({ label, id }) => (
                 <li key={id}>
